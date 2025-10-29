@@ -6,9 +6,9 @@ quests:
   # ===== ROW 1: EXPLORATION QUESTS =====
   exploration_1:
     name: "First Steps"
-    description: "Explore 500 blocks to get started"
+    description: "Explore 1000 blocks to get started"
     type: EXPLORE_BLOCKS
-    targetAmount: 500
+    targetAmount: 1000
     active: true
     prerequisite: ""
     gui_slot: 0
@@ -20,9 +20,9 @@ quests:
 
   exploration_2:
     name: "Wanderer"
-    description: "Explore 2,500 blocks"
+    description: "Explore 3000 blocks"
     type: EXPLORE_BLOCKS
-    targetAmount: 2500
+    targetAmount: 3000
     active: true
     prerequisite: "exploration_1"
     gui_slot: 1
@@ -129,7 +129,7 @@ quests:
       NETHER_QUARTZ_ORE: 50
       ANCIENT_DEBRIS: 5
     rewards:
-      NETHERITE_INGOT: 1
+      NETHERITE_INGOT: 2
       GOLD_INGOT: 10
       QUARTZ: 32
 
@@ -727,7 +727,6 @@ quests:
     rewards:
       DIAMOND: 10
       IRON_BLOCK: 5
-      BEACON: 1
 
   grind_challenge_2:
     name: "§aEnderman Pearls"
