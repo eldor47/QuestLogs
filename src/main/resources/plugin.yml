@@ -1,0 +1,51 @@
+name: QuestLogs
+version: 1.0.0
+main: com.questlogs.QuestLogsPlugin
+api-version: 1.21
+description: Quest system for tracking player exploration and achievements
+author: eldor
+
+commands:
+  quest:
+    description: View and manage your quests
+    usage: /quest <view|list>
+    permission: questlogs.use
+  questadmin:
+    description: Admin commands for managing quests
+    usage: /questadmin <reload|complete>
+    permission: questlogs.admin
+  questbook:
+    description: Open the quest book GUI
+    usage: /questbook [get]
+    permission: questlogs.use
+    aliases: [qb, quests]
+  queststats:
+    description: View player quest statistics
+    usage: /queststats [player]
+    permission: questlogs.use
+    aliases: [qstats, stats]
+  challenge:
+    description: View active challenge and leaderboard
+    usage: /challenge
+    permission: questlogs.use
+    aliases: [ch, chal]
+  challengeadmin:
+    description: Admin commands for managing challenges
+    usage: /challengeadmin <start|stop|list|reload>
+    permission: questlogs.admin
+    aliases: [chadmin, challengea]
+
+permissions:
+  questlogs.use:
+    description: Allows players to use quest commands
+    default: true
+  questlogs.admin:
+    description: Allows admin to manage quests
+    default: op
+  questlogs.stats.others:
+    description: Allows viewing other players' statistics
+    default: op
+
+
+
+

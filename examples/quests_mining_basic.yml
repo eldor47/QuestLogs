@@ -1,0 +1,70 @@
+# ==========================================
+# BASIC MINING QUESTS (WITH PREREQUISITES)
+# ==========================================
+# Simple mining quests for getting started with progression
+
+quests:
+  mining_tutorial:
+    name: "Mining Tutorial"
+    description: "Learn the basics of mining"
+    type: MINE_BLOCKS
+    active: true
+    # No prerequisite - starting quest
+    blocks:
+      STONE: 25
+      COAL_ORE: 5
+    rewards:
+      WOODEN_PICKAXE: 1
+      TORCH: 32
+      BREAD: 16
+  
+  mining_starter:
+    name: "Getting Started"
+    description: "Mine your first resources"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: mining_tutorial  # 🔒 Requires Mining Tutorial
+    blocks:
+      STONE: 50
+      COAL_ORE: 15
+      IRON_ORE: 5
+    rewards:
+      STONE_PICKAXE: 1
+      STONE_SHOVEL: 1
+      TORCH: 64
+  
+  mining_basics:
+    name: "Mining Basics"
+    description: "Collect essential mining materials"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      STONE: 100
+      COAL_ORE: 32
+      IRON_ORE: 15
+      COPPER_ORE: 10
+    rewards:
+      IRON_PICKAXE: 1
+      IRON_HELMET: 1
+      IRON_CHESTPLATE: 1
+      IRON_LEGGINGS: 1
+      IRON_BOOTS: 1
+      TORCH: 64
+  
+  mining_progression:
+    name: "Progressing Miner"
+    description: "Advance your mining skills"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      STONE: 200
+      COAL_ORE: 64
+      IRON_ORE: 32
+      COPPER_ORE: 24
+      GOLD_ORE: 8
+      LAPIS_ORE: 12
+    rewards:
+      DIAMOND_PICKAXE: 1
+      IRON_INGOT: 16
+      TORCH: 64
+

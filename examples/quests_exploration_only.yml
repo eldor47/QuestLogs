@@ -1,0 +1,103 @@
+# ==========================================
+# EXPLORATION QUESTS ONLY (WITH PREREQUISITES)
+# ==========================================
+# Sequential exploration quests - each unlocks the next!
+# Only ONE quest tracks at a time - no notification spam!
+
+quests:
+  # ====================
+  # STARTER - Always available
+  # ====================
+  explore_beginner:
+    name: "First Steps"
+    description: "Begin your journey - explore 500 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 500
+    active: true
+    # No prerequisite - this is the starting quest
+    rewards:
+      BREAD: 32
+      TORCH: 16
+      WOODEN_SWORD: 1
+  
+  # ====================
+  # INTERMEDIATE - Requires beginner
+  # ====================
+  explore_intermediate:
+    name: "Adventure Time"
+    description: "Keep exploring - reach 2,000 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 2000
+    active: true
+    prerequisite: explore_beginner  # 🔒 Locked until First Steps complete
+    rewards:
+      IRON_HELMET: 1
+      IRON_CHESTPLATE: 1
+      IRON_LEGGINGS: 1
+      IRON_BOOTS: 1
+      TORCH: 64
+  
+  # ====================
+  # ADVANCED - Requires intermediate
+  # ====================
+  explore_advanced:
+    name: "World Traveler"
+    description: "Go far and wide - explore 5,000 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 5000
+    active: true
+    prerequisite: explore_intermediate  # 🔒 Locked until Adventure Time complete
+    rewards:
+      DIAMOND: 5
+      COMPASS: 1
+      MAP: 1
+      ENDER_PEARL: 4
+  
+  # ====================
+  # EXPERT - Requires advanced
+  # ====================
+  explore_expert:
+    name: "Great Explorer"
+    description: "Venture even further - explore 10,000 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 10000
+    active: true
+    prerequisite: explore_advanced  # 🔒 Locked until World Traveler complete
+    rewards:
+      ELYTRA: 1
+      FIREWORK_ROCKET: 64
+      DIAMOND: 10
+  
+  # ====================
+  # MASTER - Requires expert
+  # ====================
+  explore_master:
+    name: "Legendary Explorer"
+    description: "The ultimate exploration challenge - 25,000 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 25000
+    active: true
+    prerequisite: explore_expert  # 🔒 Locked until Great Explorer complete
+    rewards:
+      NETHERITE_INGOT: 1
+      ENCHANTED_GOLDEN_APPLE: 1
+      DIAMOND_BLOCK: 2
+      BEACON: 1
+
+# ==========================================
+# HOW THIS WORKS:
+# ==========================================
+# 1. Only "First Steps" is available initially
+# 2. Complete it → "Adventure Time" unlocks
+# 3. Complete that → "World Traveler" unlocks
+# 4. And so on...
+# 
+# BENEFITS:
+# ✅ No notification spam - only 1 quest active at a time
+# ✅ Clear progression path
+# ✅ Better reward pacing
+# ✅ Players always know what's next
+# 
+# To disable prerequisites, set in config.yml:
+#   enable-prerequisites: false
+

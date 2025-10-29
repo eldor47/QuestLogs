@@ -1,0 +1,228 @@
+# ==========================================
+# THEMED MINING QUESTS
+# ==========================================
+# Mining quests organized by theme
+
+quests:
+  # ==========================================
+  # STONE COLLECTION THEME
+  # ==========================================
+  
+  stone_variants:
+    name: "Stone Collector"
+    description: "Collect all types of stone"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      STONE: 64
+      DIORITE: 32
+      ANDESITE: 32
+      GRANITE: 32
+      TUFF: 16
+      CALCITE: 16
+    rewards:
+      STONE_BRICKS: 128
+      SMOOTH_STONE: 64
+  
+  deepslate_hunter:
+    name: "Deep Stone Miner"
+    description: "Mine in the deepslate layers"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      DEEPSLATE: 128
+      TUFF: 32
+    rewards:
+      DEEPSLATE_BRICKS: 128
+      DIAMOND: 1
+  
+  # ==========================================
+  # PRECIOUS GEMS THEME
+  # ==========================================
+  
+  gem_collector:
+    name: "Gem Collector"
+    description: "Find beautiful gems"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      LAPIS_ORE: 20
+      EMERALD_ORE: 3
+      DIAMOND_ORE: 5
+    rewards:
+      LAPIS_BLOCK: 4
+      ENCHANTING_TABLE: 1
+  
+  diamond_hunter:
+    name: "Diamond Hunter"
+    description: "Find precious diamonds"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      DIAMOND_ORE: 10
+      DEEPSLATE_DIAMOND_ORE: 5
+    rewards:
+      DIAMOND: 10
+  
+  emerald_seeker:
+    name: "Emerald Seeker"
+    description: "Find the rarest gem"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      EMERALD_ORE: 8
+      DEEPSLATE_EMERALD_ORE: 4
+    rewards:
+      EMERALD: 8
+  
+  # ==========================================
+  # METAL ORES THEME
+  # ==========================================
+  
+  iron_miner:
+    name: "Iron Collector"
+    description: "Gather lots of iron"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      IRON_ORE: 32
+      DEEPSLATE_IRON_ORE: 16
+    rewards:
+      IRON_BLOCK: 8
+      IRON_HELMET: 1
+      IRON_CHESTPLATE: 1
+      IRON_LEGGINGS: 1
+      IRON_BOOTS: 1
+  
+  gold_rush:
+    name: "Gold Rush"
+    description: "Strike it rich with gold"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      GOLD_ORE: 16
+      DEEPSLATE_GOLD_ORE: 8
+      NETHER_GOLD_ORE: 12
+    rewards:
+      GOLD_BLOCK: 4
+      GOLDEN_APPLE: 2
+  
+  copper_king:
+    name: "Copper King"
+    description: "Become the copper champion"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      COPPER_ORE: 64
+      DEEPSLATE_COPPER_ORE: 32
+    rewards:
+      COPPER_BLOCK: 16
+      LIGHTNING_ROD: 4
+  
+  # ==========================================
+  # REDSTONE & LAPIS THEME
+  # ==========================================
+  
+  redstone_engineer:
+    name: "Redstone Engineer"
+    description: "Collect redstone for contraptions"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      REDSTONE_ORE: 48
+      DEEPSLATE_REDSTONE_ORE: 24
+    rewards:
+      REDSTONE_BLOCK: 16
+      REDSTONE_LAMP: 8
+      PISTON: 16
+  
+  lapis_enchanter:
+    name: "Lapis Enchanter"
+    description: "Gather lapis for enchanting"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      LAPIS_ORE: 32
+      DEEPSLATE_LAPIS_ORE: 16
+    rewards:
+      LAPIS_BLOCK: 8
+      ENCHANTING_TABLE: 1
+      BOOKSHELF: 15
+  
+  # ==========================================
+  # NETHER THEME
+  # ==========================================
+  
+  nether_explorer:
+    name: "Nether Explorer"
+    description: "Collect basic Nether resources"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      NETHERRACK: 128
+      SOUL_SAND: 32
+      SOUL_SOIL: 32
+      BASALT: 64
+    rewards:
+      GOLDEN_APPLE: 1
+  
+  nether_quartz_miner:
+    name: "Quartz Miner"
+    description: "Mine Nether Quartz"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      NETHER_QUARTZ_ORE: 64
+    rewards:
+      QUARTZ_BLOCK: 32
+      DAYLIGHT_DETECTOR: 4
+  
+  ancient_debris_hunter:
+    name: "Ancient Debris Hunter"
+    description: "Find the rarest Nether ore"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      ANCIENT_DEBRIS: 8
+      NETHERRACK: 500
+    rewards:
+      NETHERITE_SCRAP: 4
+      ANCIENT_DEBRIS: 2
+  
+  blackstone_collector:
+    name: "Blackstone Collector"
+    description: "Collect Blackstone materials"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      BLACKSTONE: 128
+      GILDED_BLACKSTONE: 16
+    rewards:
+      POLISHED_BLACKSTONE: 128
+  
+  # ==========================================
+  # END THEME
+  # ==========================================
+  
+  end_stone_miner:
+    name: "End Stone Miner"
+    description: "Collect End dimension materials"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      END_STONE: 256
+    rewards:
+      END_STONE_BRICKS: 128
+      PURPUR_BLOCK: 64
+  
+  chorus_farmer:
+    name: "Chorus Farmer"
+    description: "Harvest Chorus Plants"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      CHORUS_PLANT: 32
+      CHORUS_FLOWER: 16
+    rewards:
+      CHORUS_FRUIT: 64
+      POPPED_CHORUS_FRUIT: 32

@@ -1,0 +1,767 @@
+# Example quest file showing GUI customization - BALANCED VERSION
+# This demonstrates how to customize quest icons and positions in the Quest Book
+# Rewards and XP are properly scaled for balanced gameplay
+
+quests:
+  # ===== ROW 1: EXPLORATION QUESTS =====
+  exploration_1:
+    name: "First Steps"
+    description: "Explore 500 blocks to get started"
+    type: EXPLORE_BLOCKS
+    targetAmount: 500
+    active: true
+    prerequisite: ""
+    gui_slot: 0
+    gui_icon: LEATHER_BOOTS
+    xp_reward: 50
+    rewards:
+      BREAD: 5
+      LEATHER_BOOTS: 1
+
+  exploration_2:
+    name: "Wanderer"
+    description: "Explore 2,500 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 2500
+    active: true
+    prerequisite: "exploration_1"
+    gui_slot: 1
+    gui_icon: IRON_BOOTS
+    xp_reward: 150
+    rewards:
+      COOKED_BEEF: 10
+      IRON_BOOTS: 1
+
+  exploration_3:
+    name: "Explorer"
+    description: "Explore 10,000 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 10000
+    active: true
+    prerequisite: "exploration_2"
+    gui_slot: 2
+    gui_icon: DIAMOND_BOOTS
+    xp_reward: 400
+    rewards:
+      GOLDEN_APPLE: 2
+      DIAMOND_BOOTS: 1
+
+  exploration_4:
+    name: "World Conqueror"
+    description: "Explore 50,000 blocks across dimensions"
+    type: EXPLORE_BLOCKS
+    targetAmount: 50000
+    active: true
+    prerequisite: "exploration_3"
+    gui_slot: 3
+    gui_icon: NETHERITE_BOOTS
+    xp_reward: 1500
+    rewards:
+      ENCHANTED_GOLDEN_APPLE: 1
+      NETHERITE_BOOTS: 1
+      ENDER_PEARL: 16
+
+  # ===== ROW 2: MINING QUESTS =====
+  mining_1:
+    name: "Mining Basics"
+    description: "Mine basic ores to get started"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: ""
+    gui_slot: 9
+    gui_icon: STONE_PICKAXE
+    xp_reward: 75
+    blocks:
+      STONE: 50
+      COAL_ORE: 20
+      COPPER_ORE: 10
+    rewards:
+      IRON_INGOT: 10
+      TORCH: 32
+
+  mining_2:
+    name: "Iron Miner"
+    description: "Mine valuable ores"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: "mining_1"
+    gui_slot: 10
+    gui_icon: IRON_PICKAXE
+    xp_reward: 200
+    blocks:
+      IRON_ORE: 30
+      GOLD_ORE: 10
+      REDSTONE_ORE: 20
+    rewards:
+      DIAMOND: 3
+      IRON_PICKAXE: 1
+
+  mining_3:
+    name: "Diamond Hunter"
+    description: "Find the rarest ores!"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: "mining_2"
+    gui_slot: 11
+    gui_icon: DIAMOND_PICKAXE
+    xp_reward: 500
+    blocks:
+      DIAMOND_ORE: 10
+      EMERALD_ORE: 5
+      LAPIS_ORE: 15
+    rewards:
+      DIAMOND: 8
+      EMERALD: 3
+      ENCHANTING_TABLE: 1
+
+  mining_4:
+    name: "Nether Explorer"
+    description: "Master the nether ores"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: "mining_3"
+    gui_slot: 12
+    gui_icon: NETHER_GOLD_ORE
+    xp_reward: 1000
+    blocks:
+      NETHERRACK: 200
+      NETHER_GOLD_ORE: 30
+      NETHER_QUARTZ_ORE: 50
+      ANCIENT_DEBRIS: 5
+    rewards:
+      NETHERITE_INGOT: 1
+      GOLD_INGOT: 10
+      QUARTZ: 32
+
+  mining_5_legendary:
+    name: "§6Ancient Debris Master"
+    description: "§cHARDCORE: Find massive amounts of ancient debris"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: "mining_4"
+    gui_slot: 13
+    gui_icon: ANCIENT_DEBRIS
+    xp_reward: 3000
+    blocks:
+      ANCIENT_DEBRIS: 50
+      DIAMOND_ORE: 64
+      EMERALD_ORE: 32
+    rewards:
+      NETHERITE_INGOT: 8
+      NETHERITE_PICKAXE: 1
+      ENCHANTED_GOLDEN_APPLE: 2
+      DIAMOND: 16
+
+  # ===== ROW 3: COMBAT QUESTS =====
+  combat_1:
+    name: "Monster Slayer I"
+    description: "Defeat your first monsters"
+    type: KILL_MOBS
+    active: true
+    prerequisite: ""
+    gui_slot: 18
+    gui_icon: WOODEN_SWORD
+    xp_reward: 100
+    mobs:
+      ZOMBIE: 10
+      SKELETON: 10
+      SPIDER: 10
+    rewards:
+      IRON_SWORD: 1
+      COOKED_BEEF: 16
+
+  combat_2:
+    name: "Monster Slayer II"
+    description: "Defeat stronger foes"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "combat_1"
+    gui_slot: 19
+    gui_icon: IRON_SWORD
+    xp_reward: 300
+    mobs:
+      ZOMBIE: 25
+      SKELETON: 25
+      CREEPER: 15
+      ENDERMAN: 5
+    rewards:
+      DIAMOND_SWORD: 1
+      GOLDEN_APPLE: 2
+
+  combat_3:
+    name: "Boss Hunter"
+    description: "Challenge the strongest mobs"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "combat_2"
+    gui_slot: 20
+    gui_icon: NETHERITE_SWORD
+    xp_reward: 800
+    mobs:
+      WITHER_SKELETON: 10
+      BLAZE: 15
+      GHAST: 5
+    rewards:
+      NETHERITE_INGOT: 2
+      ENCHANTED_GOLDEN_APPLE: 1
+      TOTEM_OF_UNDYING: 1
+
+  combat_4:
+    name: "Nether Dominator"
+    description: "Conquer all nether mobs"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "combat_3"
+    gui_slot: 21
+    gui_icon: BLAZE_ROD
+    xp_reward: 1500
+    mobs:
+      BLAZE: 50
+      WITHER_SKELETON: 30
+      GHAST: 20
+      MAGMA_CUBE: 40
+      PIGLIN_BRUTE: 15
+    rewards:
+      NETHERITE_SWORD: 1
+      BLAZE_ROD: 16
+      NETHER_STAR: 1
+
+  combat_5:
+    name: "End Warrior"
+    description: "Master the End dimension"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "combat_4"
+    gui_slot: 22
+    gui_icon: ENDER_EYE
+    xp_reward: 2500
+    mobs:
+      ENDERMAN: 100
+      SHULKER: 20
+      ENDERMITE: 30
+    rewards:
+      ELYTRA: 1
+      SHULKER_BOX: 3
+      ENDER_CHEST: 1
+      ENCHANTED_GOLDEN_APPLE: 2
+
+  # ===== ROW 4: BUILDING QUESTS =====
+  building_1:
+    name: "Architect Apprentice"
+    description: "Place blocks to build your base"
+    type: PLACE_BLOCKS
+    active: true
+    prerequisite: ""
+    gui_slot: 27
+    gui_icon: OAK_PLANKS
+    xp_reward: 100
+    blocks:
+      OAK_PLANKS: 100
+      COBBLESTONE: 100
+      GLASS: 50
+    rewards:
+      OAK_LOG: 32
+      STONE: 64
+
+  building_2:
+    name: "Master Builder"
+    description: "Build impressive structures"
+    type: PLACE_BLOCKS
+    active: true
+    prerequisite: "building_1"
+    gui_slot: 28
+    gui_icon: BRICK
+    xp_reward: 400
+    blocks:
+      STONE_BRICKS: 200
+      BRICK: 150
+      GLASS_PANE: 100
+    rewards:
+      DIAMOND: 5
+      QUARTZ: 32
+
+  building_3:
+    name: "Mega Builder"
+    description: "Construct massive builds"
+    type: PLACE_BLOCKS
+    active: true
+    prerequisite: "building_2"
+    gui_slot: 29
+    gui_icon: QUARTZ_BLOCK
+    xp_reward: 1200
+    blocks:
+      QUARTZ_BLOCK: 500
+      PRISMARINE: 300
+      GLOWSTONE: 200
+    rewards:
+      DIAMOND: 10
+      EMERALD: 5
+      BEACON: 1
+
+  breaking_challenge:
+    name: "Demolition Expert"
+    description: "Break massive amounts of blocks"
+    type: BREAK_BLOCKS
+    active: true
+    prerequisite: ""
+    gui_slot: 30
+    gui_icon: TNT
+    xp_reward: 300
+    blocks:
+      DIRT: 500
+      SAND: 300
+      GRAVEL: 200
+    rewards:
+      DIAMOND: 8
+      TNT: 32
+
+  # ===== ROW 5: CRAFTING QUESTS =====
+  crafting_1:
+    name: "Crafting Novice"
+    description: "Craft basic tools and items"
+    type: CRAFT_ITEMS
+    active: true
+    prerequisite: ""
+    gui_slot: 36
+    gui_icon: CRAFTING_TABLE
+    xp_reward: 80
+    items:
+      STICK: 50
+      WOODEN_PICKAXE: 5
+      TORCH: 64
+    rewards:
+      IRON_INGOT: 20
+      COAL: 32
+
+  crafting_2:
+    name: "Master Craftsman"
+    description: "Craft advanced items"
+    type: CRAFT_ITEMS
+    active: true
+    prerequisite: "crafting_1"
+    gui_slot: 37
+    gui_icon: SMITHING_TABLE
+    xp_reward: 350
+    items:
+      IRON_PICKAXE: 10
+      IRON_SWORD: 10
+      IRON_HELMET: 5
+    rewards:
+      DIAMOND: 8
+      GOLD_INGOT: 16
+
+  crafting_3:
+    name: "Industrial Crafter"
+    description: "Mass produce items"
+    type: CRAFT_ITEMS
+    active: true
+    prerequisite: "crafting_2"
+    gui_slot: 38
+    gui_icon: ANVIL
+    xp_reward: 1000
+    items:
+      DIAMOND_PICKAXE: 5
+      DIAMOND_SWORD: 5
+      DIAMOND_HELMET: 3
+      ENCHANTING_TABLE: 2
+    rewards:
+      NETHERITE_INGOT: 2
+      DIAMOND: 10
+      ENCHANTED_BOOK: 3
+
+  # ===== LEGENDARY QUESTS (HARDCORE) =====
+  legendary_dragon:
+    name: "§5Dragon Slayer"
+    description: "§dLEGENDARY: Defeat the Ender Dragon!"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "combat_5"
+    gui_slot: 6
+    gui_icon: DRAGON_HEAD
+    xp_reward: 5000
+    mobs:
+      ENDER_DRAGON: 1
+    rewards:
+      ELYTRA: 1
+      DRAGON_HEAD: 1
+      NETHERITE_INGOT: 3
+      ENCHANTED_GOLDEN_APPLE: 5
+      TOTEM_OF_UNDYING: 2
+    enchantments:
+      ELYTRA:
+        UNBREAKING: 3
+        MENDING: 1
+
+  legendary_wither:
+    name: "§5Wither Destroyer"
+    description: "§dLEGENDARY: Summon and defeat the Wither!"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "combat_4"
+    gui_slot: 15
+    gui_icon: WITHER_SKELETON_SKULL
+    xp_reward: 4000
+    mobs:
+      WITHER: 1
+    rewards:
+      NETHER_STAR: 2
+      NETHERITE_INGOT: 3
+      BEACON: 1
+      ENCHANTED_GOLDEN_APPLE: 3
+      TOTEM_OF_UNDYING: 1
+
+  legendary_raid:
+    name: "§5Village Hero"
+    description: "§dLEGENDARY: Defeat a complete raid!"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "combat_3"
+    gui_slot: 24
+    gui_icon: CROSSBOW
+    xp_reward: 3000
+    mobs:
+      PILLAGER: 30
+      VINDICATOR: 20
+      EVOKER: 10
+      RAVAGER: 5
+      WITCH: 15
+    rewards:
+      TOTEM_OF_UNDYING: 2
+      EMERALD: 20
+      DIAMOND: 10
+      ENCHANTED_BOOK: 5
+
+  legendary_ocean:
+    name: "§5Ocean Monument Conqueror"
+    description: "§dLEGENDARY: Clear an entire ocean monument!"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "combat_3"
+    gui_slot: 33
+    gui_icon: PRISMARINE_SHARD
+    xp_reward: 2500
+    mobs:
+      GUARDIAN: 50
+      ELDER_GUARDIAN: 3
+    rewards:
+      TRIDENT: 1
+      HEART_OF_THE_SEA: 1
+      PRISMARINE_CRYSTALS: 32
+      DIAMOND: 8
+      SPONGE: 16
+
+  legendary_all_ores:
+    name: "§6Master Miner"
+    description: "§cHARDCORE: Mine every ore type in massive quantities!"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: "mining_5_legendary"
+    gui_slot: 40
+    gui_icon: NETHERITE_PICKAXE
+    xp_reward: 10000
+    blocks:
+      COAL_ORE: 200
+      COPPER_ORE: 150
+      IRON_ORE: 200
+      GOLD_ORE: 100
+      LAPIS_ORE: 100
+      REDSTONE_ORE: 150
+      DIAMOND_ORE: 100
+      EMERALD_ORE: 64
+      NETHER_GOLD_ORE: 100
+      ANCIENT_DEBRIS: 100
+    rewards:
+      NETHERITE_PICKAXE: 1
+      NETHERITE_INGOT: 5
+      DIAMOND: 32
+      EMERALD: 16
+      ENCHANTED_GOLDEN_APPLE: 3
+      BEACON: 1
+    enchantments:
+      NETHERITE_PICKAXE:
+        EFFICIENCY: 5
+        FORTUNE: 3
+        UNBREAKING: 3
+        MENDING: 1
+
+  legendary_mega_builder:
+    name: "§6Architectural Legend"
+    description: "§cHARDCORE: Place an insane amount of blocks!"
+    type: PLACE_BLOCKS
+    active: true
+    prerequisite: "building_3"
+    gui_slot: 41
+    gui_icon: BEACON
+    xp_reward: 8000
+    blocks:
+      STONE_BRICKS: 2000
+      QUARTZ_BLOCK: 1000
+      PRISMARINE: 1000
+      GLOWSTONE: 500
+      SEA_LANTERN: 500
+      GLASS: 1000
+    rewards:
+      BEACON: 2
+      NETHERITE_INGOT: 3
+      DIAMOND: 20
+      EMERALD: 10
+      ENCHANTED_GOLDEN_APPLE: 3
+      ELYTRA: 1
+
+  legendary_mob_genocide:
+    name: "§4Mob Annihilator"
+    description: "§cHARDCORE: Kill EVERY hostile mob type!"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "legendary_raid"
+    gui_slot: 42
+    gui_icon: NETHERITE_SWORD
+    xp_reward: 15000
+    mobs:
+      ZOMBIE: 500
+      SKELETON: 500
+      CREEPER: 300
+      SPIDER: 400
+      ENDERMAN: 200
+      BLAZE: 100
+      WITHER_SKELETON: 100
+      GHAST: 50
+      MAGMA_CUBE: 200
+      SLIME: 200
+      WITCH: 100
+      PILLAGER: 150
+      VINDICATOR: 100
+      EVOKER: 50
+      RAVAGER: 30
+      GUARDIAN: 100
+      SHULKER: 50
+    rewards:
+      NETHERITE_SWORD: 1
+      NETHERITE_HELMET: 1
+      NETHERITE_CHESTPLATE: 1
+      NETHERITE_LEGGINGS: 1
+      NETHERITE_BOOTS: 1
+      TOTEM_OF_UNDYING: 5
+      ENCHANTED_GOLDEN_APPLE: 10
+      NETHER_STAR: 3
+    enchantments:
+      NETHERITE_SWORD:
+        SHARPNESS: 5
+        LOOTING: 3
+        SWEEPING_EDGE: 3
+        FIRE_ASPECT: 2
+        KNOCKBACK: 2
+        UNBREAKING: 3
+        MENDING: 1
+      NETHERITE_HELMET:
+        PROTECTION: 4
+        UNBREAKING: 3
+        RESPIRATION: 3
+        AQUA_AFFINITY: 1
+        MENDING: 1
+      NETHERITE_CHESTPLATE:
+        PROTECTION: 4
+        UNBREAKING: 3
+        MENDING: 1
+      NETHERITE_LEGGINGS:
+        PROTECTION: 4
+        UNBREAKING: 3
+        SWIFT_SNEAK: 3
+        MENDING: 1
+      NETHERITE_BOOTS:
+        PROTECTION: 4
+        UNBREAKING: 3
+        FEATHER_FALLING: 4
+        DEPTH_STRIDER: 3
+        SOUL_SPEED: 3
+        MENDING: 1
+
+  legendary_ultimate_explorer:
+    name: "§bInfinite Walker"
+    description: "§cHARDCORE: Explore 1,000,000 blocks!"
+    type: EXPLORE_BLOCKS
+    targetAmount: 1000000
+    active: true
+    prerequisite: "exploration_4"
+    gui_slot: 43
+    gui_icon: ENCHANTED_GOLDEN_APPLE
+    xp_reward: 20000
+    rewards:
+      NETHERITE_BOOTS: 1
+      ELYTRA: 1
+      FIREWORK_ROCKET: 320
+      ENCHANTED_GOLDEN_APPLE: 10
+      DIAMOND: 32
+      EMERALD: 32
+      TOTEM_OF_UNDYING: 3
+      BEACON: 2
+
+  # ===== THE ULTIMATE CHALLENGE =====
+  legendary_ultimate:
+    name: "§4§lTHE ULTIMATE CHALLENGE"
+    description: "§c§lHARDCORE: For the most dedicated players only!"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "legendary_mob_genocide"
+    gui_slot: 44
+    gui_icon: NETHER_STAR
+    xp_reward: 50000  # MASSIVE XP!
+    mobs:
+      ENDER_DRAGON: 10
+      WITHER: 10
+      ELDER_GUARDIAN: 20
+      WARDEN: 5
+    rewards:
+      NETHERITE_SWORD: 1
+      NETHERITE_PICKAXE: 1
+      NETHERITE_AXE: 1
+      BOW: 1
+      CROSSBOW: 1
+      TRIDENT: 1
+      NETHERITE_HELMET: 1
+      NETHERITE_CHESTPLATE: 1
+      NETHERITE_LEGGINGS: 1
+      NETHERITE_BOOTS: 1
+      NETHERITE_INGOT: 10
+      DIAMOND: 64
+      EMERALD: 64
+      ENCHANTED_GOLDEN_APPLE: 20
+      TOTEM_OF_UNDYING: 10
+      ELYTRA: 2
+      BEACON: 5
+      NETHER_STAR: 32
+      DRAGON_EGG: 1
+    enchantments:
+      # Full max vanilla enchants!
+      NETHERITE_SWORD:
+        SHARPNESS: 5
+        LOOTING: 3
+        SWEEPING_EDGE: 3
+        FIRE_ASPECT: 2
+        KNOCKBACK: 2
+        UNBREAKING: 3
+        MENDING: 1
+      NETHERITE_PICKAXE:
+        EFFICIENCY: 5
+        FORTUNE: 3
+        UNBREAKING: 3
+        MENDING: 1
+      NETHERITE_AXE:
+        SHARPNESS: 5
+        EFFICIENCY: 5
+        UNBREAKING: 3
+        MENDING: 1
+      BOW:
+        POWER: 5
+        PUNCH: 2
+        FLAME: 1
+        INFINITY: 1
+        UNBREAKING: 3
+      CROSSBOW:
+        QUICK_CHARGE: 3
+        MULTISHOT: 1
+        PIERCING: 4
+        UNBREAKING: 3
+        MENDING: 1
+      TRIDENT:
+        LOYALTY: 3
+        CHANNELING: 1
+        IMPALING: 5
+        UNBREAKING: 3
+        MENDING: 1
+      NETHERITE_HELMET:
+        PROTECTION: 4
+        UNBREAKING: 3
+        RESPIRATION: 3
+        AQUA_AFFINITY: 1
+        MENDING: 1
+      NETHERITE_CHESTPLATE:
+        PROTECTION: 4
+        UNBREAKING: 3
+        MENDING: 1
+      NETHERITE_LEGGINGS:
+        PROTECTION: 4
+        UNBREAKING: 3
+        SWIFT_SNEAK: 3
+        MENDING: 1
+      NETHERITE_BOOTS:
+        PROTECTION: 4
+        UNBREAKING: 3
+        FEATHER_FALLING: 4
+        DEPTH_STRIDER: 3
+        SOUL_SPEED: 3
+        MENDING: 1
+      ELYTRA:
+        UNBREAKING: 3
+        MENDING: 1
+
+  # ===== SPEEDRUN CHALLENGES =====
+  speedrun_dragon:
+    name: "§eSpeedrunner: Dragon"
+    description: "§6Kill the Ender Dragon quickly after starting"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "combat_3"
+    gui_slot: 7
+    gui_icon: DRAGON_BREATH
+    xp_reward: 2000
+    mobs:
+      ENDER_DRAGON: 1
+    rewards:
+      DIAMOND: 32
+      EMERALD: 16
+      ENCHANTED_GOLDEN_APPLE: 3
+
+  # ===== GRINDING CHALLENGES =====
+  grind_challenge_1:
+    name: "§aCobblestone Generator"
+    description: "§7Mine 10,000 cobblestone"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: ""
+    gui_slot: 4
+    gui_icon: COBBLESTONE
+    xp_reward: 500
+    blocks:
+      COBBLESTONE: 10000
+    rewards:
+      DIAMOND: 10
+      IRON_BLOCK: 5
+      BEACON: 1
+
+  grind_challenge_2:
+    name: "§aEnderman Pearls"
+    description: "§7Collect pearls by killing endermen"
+    type: KILL_MOBS
+    active: true
+    prerequisite: "combat_2"
+    gui_slot: 23
+    gui_icon: ENDER_PEARL
+    xp_reward: 800
+    mobs:
+      ENDERMAN: 250
+    rewards:
+      ENDER_CHEST: 3
+      SHULKER_BOX: 2
+      DIAMOND: 10
+
+  grind_challenge_3:
+    name: "§aResource Hoarder"
+    description: "§7Break and collect everything!"
+    type: BREAK_BLOCKS
+    active: true
+    prerequisite: "breaking_challenge"
+    gui_slot: 31
+    gui_icon: CHEST
+    xp_reward: 600
+    blocks:
+      OAK_LOG: 500
+      COBBLESTONE: 1000
+      DIRT: 1000
+      SAND: 500
+      GRAVEL: 500
+    rewards:
+      DIAMOND: 15
+      SHULKER_BOX: 3
+      CHEST: 16
+

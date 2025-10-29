@@ -1,0 +1,214 @@
+# ==========================================
+# STRUCTURED REWARDS FORMAT EXAMPLES
+# ==========================================
+# New YAML format with structured rewards section
+
+quests:
+  # ==========================================
+  # EXPLORATION QUEST WITH STRUCTURED REWARDS
+  # ==========================================
+  
+  explore_structured_1:
+    name: "First Adventure"
+    description: "Explore 1,000 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 1000
+    active: true
+    rewards:
+      DIAMOND: 5
+      IRON_PICKAXE: 1
+      TORCH: 64
+      BREAD: 32
+  
+  explore_structured_2:
+    name: "World Explorer"
+    description: "Explore 5,000 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 5000
+    active: true
+    rewards:
+      DIAMOND: 10
+      EMERALD: 5
+      ELYTRA: 1
+      FIREWORK_ROCKET: 64
+  
+  # ==========================================
+  # MINING QUEST WITH STRUCTURED REWARDS
+  # ==========================================
+  
+  mining_structured_1:
+    name: "Beginner Miner"
+    description: "Mine basic ores"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      STONE: 100
+      COAL_ORE: 32
+      IRON_ORE: 16
+    rewards:
+      IRON_PICKAXE: 1
+      TORCH: 64
+      COOKED_BEEF: 16
+  
+  mining_structured_2:
+    name: "Diamond Hunter"
+    description: "Find precious gems"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      DIAMOND_ORE: 10
+      EMERALD_ORE: 5
+      LAPIS_ORE: 20
+    rewards:
+      DIAMOND: 20
+      EMERALD: 10
+      DIAMOND_PICKAXE: 1
+      ENCHANTING_TABLE: 1
+  
+  mining_structured_3:
+    name: "Nether Master"
+    description: "Conquer the Nether"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      NETHERRACK: 500
+      ANCIENT_DEBRIS: 4
+      NETHER_GOLD_ORE: 20
+    rewards:
+      NETHERITE_INGOT: 2
+      DIAMOND: 15
+      GOLDEN_APPLE: 3
+  
+  # ==========================================
+  # ARMOR SET REWARDS
+  # ==========================================
+  
+  armor_quest:
+    name: "Warrior Training"
+    description: "Complete combat training"
+    type: EXPLORE_BLOCKS
+    targetAmount: 3000
+    active: true
+    rewards:
+      DIAMOND_HELMET: 1
+      DIAMOND_CHESTPLATE: 1
+      DIAMOND_LEGGINGS: 1
+      DIAMOND_BOOTS: 1
+      DIAMOND_SWORD: 1
+      SHIELD: 1
+  
+  # ==========================================
+  # BUILDING MATERIALS REWARDS
+  # ==========================================
+  
+  builder_quest:
+    name: "Master Builder"
+    description: "Explore to find building spots"
+    type: EXPLORE_BLOCKS
+    targetAmount: 2000
+    active: true
+    rewards:
+      STONE_BRICKS: 256
+      SMOOTH_STONE: 128
+      GLASS: 64
+      QUARTZ_BLOCK: 32
+      GLOWSTONE: 32
+  
+  # ==========================================
+  # RESOURCE BUNDLE REWARDS
+  # ==========================================
+  
+  resource_quest:
+    name: "Resource Gatherer"
+    description: "Mine various resources"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      COAL_ORE: 64
+      IRON_ORE: 32
+      GOLD_ORE: 16
+    rewards:
+      IRON_INGOT: 64
+      GOLD_INGOT: 32
+      COAL: 128
+      DIAMOND: 10
+      IRON_BLOCK: 4
+      GOLD_BLOCK: 2
+  
+  # ==========================================
+  # FARMING/FOOD REWARDS
+  # ==========================================
+  
+  farming_quest:
+    name: "Farmer's Journey"
+    description: "Travel to find farmland"
+    type: EXPLORE_BLOCKS
+    targetAmount: 1500
+    active: true
+    rewards:
+      WHEAT_SEEDS: 64
+      CARROT: 32
+      POTATO: 32
+      IRON_HOE: 1
+      WATER_BUCKET: 2
+      BONE_MEAL: 64
+  
+  # ==========================================
+  # ENCHANTING REWARDS
+  # ==========================================
+  
+  enchanter_quest:
+    name: "Enchanter's Path"
+    description: "Mine materials for enchanting"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      LAPIS_ORE: 32
+      DIAMOND_ORE: 8
+      OBSIDIAN: 16
+    rewards:
+      ENCHANTING_TABLE: 1
+      BOOKSHELF: 15
+      LAPIS_LAZULI: 64
+      DIAMOND: 10
+      ANVIL: 1
+  
+  # ==========================================
+  # REDSTONE ENGINEER REWARDS
+  # ==========================================
+  
+  redstone_quest:
+    name: "Redstone Engineer"
+    description: "Mine redstone components"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      REDSTONE_ORE: 64
+      IRON_ORE: 32
+    rewards:
+      REDSTONE: 256
+      REDSTONE_TORCH: 32
+      REPEATER: 16
+      COMPARATOR: 16
+      PISTON: 16
+      HOPPER: 8
+  
+  # ==========================================
+  # MIXED OLD AND NEW FORMAT
+  # ==========================================
+  
+  # You can also use the old string format for display
+  # while having structured rewards for actual items
+  mixed_format_quest:
+    name: "Mixed Format Example"
+    description: "This quest shows both formats"
+    type: EXPLORE_BLOCKS
+    targetAmount: 500
+    reward: "Special reward bundle"  # For display only
+    active: true
+    rewards:
+      DIAMOND: 3
+      IRON_INGOT: 16
+      GOLDEN_APPLE: 1
+
+

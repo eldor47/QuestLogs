@@ -1,0 +1,278 @@
+# ==========================================
+# MIXED QUEST TYPES (WITH PREREQUISITES)
+# ==========================================
+# Exploration, Mining, and Combat quests with branching paths!
+
+quests:
+  # ==========================================
+  # STARTER QUEST - Always available
+  # ==========================================
+  
+  welcome:
+    name: "Welcome to the Server!"
+    description: "Explore 100 blocks to get started"
+    type: EXPLORE_BLOCKS
+    targetAmount: 100
+    active: true
+    # No prerequisite - starting quest for all players
+    rewards:
+      BREAD: 16
+      TORCH: 32
+      WOODEN_SWORD: 1
+  
+  # ==========================================
+  # EXPLORATION BRANCH (Requires welcome)
+  # ==========================================
+  
+  explore_starter:
+    name: "First Adventure"
+    description: "Explore 1,000 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 1000
+    active: true
+    prerequisite: welcome  # 🔒 Requires welcome quest
+    rewards:
+      IRON_SWORD: 1
+      BREAD: 32
+      COMPASS: 1
+  
+  explore_traveler:
+    name: "World Traveler"
+    description: "Explore 5,000 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 5000
+    active: true
+    prerequisite: explore_starter  # 🔒 Requires First Adventure
+    rewards:
+      DIAMOND: 5
+      MAP: 1
+      TORCH: 64
+  
+  explore_adventurer:
+    name: "Great Adventurer"
+    description: "Explore 10,000 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 10000
+    active: true
+    prerequisite: explore_traveler  # 🔒 Requires World Traveler
+    rewards:
+      ELYTRA: 1
+      FIREWORK_ROCKET: 64
+  
+  # ==========================================
+  # MINING BRANCH (Requires welcome)
+  # ==========================================
+  
+  mining_beginner:
+    name: "Beginner Miner"
+    description: "Mine basic resources"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: welcome  # 🔒 Requires welcome quest
+    blocks:
+      STONE: 100
+      COAL_ORE: 32
+      IRON_ORE: 16
+    rewards:
+      IRON_PICKAXE: 1
+      TORCH: 64
+  
+  mining_intermediate:
+    name: "Intermediate Miner"
+    description: "Find valuable ores"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: mining_beginner  # 🔒 Requires Beginner Miner
+    blocks:
+      IRON_ORE: 32
+      GOLD_ORE: 12
+      LAPIS_ORE: 16
+      REDSTONE_ORE: 24
+    rewards:
+      DIAMOND_PICKAXE: 1
+  
+  mining_expert:
+    name: "Expert Miner"
+    description: "Master ore collection"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: mining_intermediate  # 🔒 Requires Intermediate Miner
+    blocks:
+      DIAMOND_ORE: 10
+      EMERALD_ORE: 5
+      GOLD_ORE: 16
+    rewards:
+      DIAMOND: 10
+  
+  # ==========================================
+  # COMBAT BRANCH (Requires welcome)
+  # ==========================================
+  
+  combat_starter:
+    name: "Monster Hunter"
+    description: "Defeat common hostile mobs"
+    type: KILL_MOBS
+    active: true
+    prerequisite: welcome  # 🔒 Requires welcome quest
+    mobs:
+      ZOMBIE: 10
+      SKELETON: 10
+      SPIDER: 5
+    rewards:
+      IRON_SWORD: 1
+      SHIELD: 1
+      COOKED_BEEF: 32
+  
+  combat_advanced:
+    name: "Elite Hunter"
+    description: "Face tougher enemies"
+    type: KILL_MOBS
+    active: true
+    prerequisite: combat_starter  # 🔒 Requires Monster Hunter
+    mobs:
+      CREEPER: 8
+      ENDERMAN: 5
+      WITCH: 3
+    rewards:
+      DIAMOND_SWORD: 1
+      DIAMOND: 5
+      GOLDEN_APPLE: 2
+  
+  # ==========================================
+  # THEMED MINING QUESTS (Requires mining_expert)
+  # ==========================================
+  
+  gem_hunter:
+    name: "Gem Hunter"
+    description: "Collect precious gems"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: mining_expert  # 🔒 Requires Expert Miner
+    blocks:
+      DIAMOND_ORE: 8
+      EMERALD_ORE: 4
+      LAPIS_ORE: 20
+    rewards:
+      ENCHANTING_TABLE: 1
+      LAPIS_BLOCK: 4
+  
+  redstone_master:
+    name: "Redstone Master"
+    description: "Gather redstone resources"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: mining_intermediate  # 🔒 Requires Intermediate Miner
+    blocks:
+      REDSTONE_ORE: 64
+      DEEPSLATE_REDSTONE_ORE: 32
+    rewards:
+      REDSTONE_BLOCK: 8
+      PISTON: 16
+      REPEATER: 16
+  
+  # ==========================================
+  # NETHER QUESTS (Requires mining_expert OR combat_advanced)
+  # ==========================================
+  
+  nether_basic:
+    name: "Nether Novice"
+    description: "Start exploring the Nether"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: mining_expert  # 🔒 Requires Expert Miner OR change to combat_advanced
+    blocks:
+      NETHERRACK: 100
+      SOUL_SAND: 32
+      NETHER_QUARTZ_ORE: 24
+    rewards:
+      GOLDEN_APPLE: 1
+      FIRE_RESISTANCE_POTION: 3
+  
+  nether_advanced:
+    name: "Nether Expert"
+    description: "Master Nether mining"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: nether_basic  # 🔒 Requires Nether Novice
+    blocks:
+      NETHERRACK: 500
+      NETHER_GOLD_ORE: 16
+      ANCIENT_DEBRIS: 4
+    rewards:
+      NETHERITE_SCRAP: 2
+      DIAMOND: 5
+  
+  # ==========================================
+  # DEEPSLATE QUESTS (Requires mining_intermediate)
+  # ==========================================
+  
+  deepslate_explorer:
+    name: "Deep Depths"
+    description: "Mine in deepslate layers"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: mining_intermediate  # 🔒 Requires Intermediate Miner
+    blocks:
+      DEEPSLATE: 128
+      DEEPSLATE_IRON_ORE: 16
+      DEEPSLATE_GOLD_ORE: 8
+      DEEPSLATE_DIAMOND_ORE: 4
+    rewards:
+      DIAMOND: 3
+  
+  # ==========================================
+  # ULTIMATE COMBO QUESTS (Requires multiple branches)
+  # ==========================================
+  
+  explorer_miner_combo:
+    name: "Explorer & Miner"
+    description: "Complete advanced exploration (requires both paths)"
+    type: EXPLORE_BLOCKS
+    targetAmount: 3000
+    active: true
+    prerequisite: explore_traveler  # 🔒 Requires World Traveler
+    rewards:
+      DIAMOND_BLOCK: 1
+      NETHERITE_INGOT: 1
+  
+  ultimate_miner_combo:
+    name: "Ultimate Miner"
+    description: "The ultimate mining achievement"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: mining_expert  # 🔒 Requires Expert Miner
+    blocks:
+      COAL_ORE: 64
+      IRON_ORE: 32
+      GOLD_ORE: 16
+      DIAMOND_ORE: 8
+      EMERALD_ORE: 4
+    rewards:
+      NETHERITE_PICKAXE: 1
+
+# ==========================================
+# QUEST TREE STRUCTURE:
+# ==========================================
+#
+#                    welcome (starter)
+#                         |
+#         ┌───────────────┼───────────────┐
+#         │               │               │
+#   explore_starter  mining_beginner  combat_starter
+#         │               │               │
+#   explore_traveler mining_intermediate combat_advanced
+#         │               │
+#   explore_adventurer mining_expert
+#         │               │
+#         │           gem_hunter
+#         │               │
+# explorer_miner_combo nether_basic
+#                         │
+#                   nether_advanced
+#
+# BENEFITS:
+# ✅ Three distinct paths from one starter
+# ✅ No notification spam - only available quests track
+# ✅ Natural progression with clear goals
+# ✅ Players choose their preferred path
+# ✅ Advanced quests require earlier completion

@@ -1,0 +1,85 @@
+# ==========================================
+#          QuestLogs Configuration
+# ==========================================
+# Plugin for tracking player quests, exploration, and mining
+
+# ==========================================
+# General Settings
+# ==========================================
+
+# Enable debug messages in console (useful for troubleshooting)
+debug: false
+
+# ==========================================
+# Exploration Quest Settings
+# ==========================================
+
+# Send progress notifications every X blocks explored
+# Example: If set to 500, players will see a message every 500 blocks
+# Set to 0 to disable notifications
+notification-interval: 500
+
+# ==========================================
+# Mining Quest Settings
+# ==========================================
+
+# Show individual block mining messages
+# If true, players see "[Quest] Mined Coal Ore: 15/32"
+# If false, only show when objectives are complete
+show-mining-progress: true
+
+# Show mob kill progress messages
+# If true, players see "[Quest] Killed Zombie: 5/10"
+# If false, only show when objectives are complete
+show-mob-progress: true
+
+# ==========================================
+# Reward Settings
+# ==========================================
+
+# Enable/disable automatic reward giving
+# Note: Currently rewards are display-only, this is for future implementation
+auto-give-rewards: true
+
+# ==========================================
+# Performance Settings
+# ==========================================
+
+# How often to save player progress (in seconds)
+# Lower = more frequent saves, higher server load
+# Higher = less frequent saves, potential data loss on crash
+auto-save-interval: 300
+
+# ==========================================
+# Message Settings
+# ==========================================
+
+# Show quest completion messages to all players
+broadcast-completions: false
+
+# Quest completion sound (leave empty to disable)
+# Examples: ENTITY_PLAYER_LEVELUP, UI_TOAST_CHALLENGE_COMPLETE, BLOCK_NOTE_BLOCK_PLING
+completion-sound: "ENTITY_PLAYER_LEVELUP"
+
+# ==========================================
+# Quest Book Settings
+# ==========================================
+
+# Give players a Quest Book when they join the server
+give-questbook-on-join: true
+
+# Allow players to get a new quest book with /questbook get
+allow-questbook-command: true
+
+# ==========================================
+# Quest Prerequisites Settings
+# ==========================================
+
+# Enable quest prerequisite system
+# If true, some quests will be locked until other quests are completed
+# If false, all quests are available immediately
+enable-prerequisites: true
+
+
+
+

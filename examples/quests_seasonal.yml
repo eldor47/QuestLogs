@@ -1,0 +1,231 @@
+# ==========================================
+# SEASONAL & EVENT QUESTS
+# ==========================================
+# Special quests for holidays and events
+# Set active: false and enable during events
+#
+# NOTE: Seasonal quests typically don't need prerequisites
+#       since they're meant to be standalone events!
+#       But you CAN add them if you want event progression.
+
+quests:
+  # ==========================================
+  # HALLOWEEN QUESTS
+  # ==========================================
+  
+  halloween_spooky:
+    name: "Spooky Mining"
+    description: "Mine in the darkest depths"
+    type: MINE_BLOCKS
+    active: false  # Enable during Halloween
+    blocks:
+      DEEPSLATE: 200
+      COAL_ORE: 64
+      DEEPSLATE_COAL_ORE: 32
+    rewards:
+      JACK_O_LANTERN: 16
+      PUMPKIN_PIE: 8
+      CARVED_PUMPKIN: 8
+  
+  halloween_nether:
+    name: "Nether Nightmare"
+    description: "Brave the fiery depths"
+    type: MINE_BLOCKS
+    active: false
+    blocks:
+      NETHERRACK: 256
+      SOUL_SAND: 64
+      SOUL_SOIL: 64
+    rewards:
+      FIRE_CHARGE: 64
+      SOUL_TORCH: 64
+  
+  # ==========================================
+  # CHRISTMAS/WINTER QUESTS
+  # ==========================================
+  
+  winter_wonderland:
+    name: "Winter Explorer"
+    description: "Explore during the cold season"
+    type: EXPLORE_BLOCKS
+    targetAmount: 2500
+    active: false  # Enable during winter
+    rewards:
+      SNOWBALL: 256
+      ICE: 64
+      SNOW_BLOCK: 128
+  
+  winter_miner:
+    name: "Ice Age Miner"
+    description: "Mine through frozen layers"
+    type: MINE_BLOCKS
+    active: false
+    blocks:
+      STONE: 200
+      DEEPSLATE: 100
+      IRON_ORE: 32
+      DIAMOND_ORE: 6
+    rewards:
+      DIAMOND: 8
+      BLUE_ICE: 64
+      PACKED_ICE: 128
+  
+  # ==========================================
+  # EASTER QUESTS
+  # ==========================================
+  
+  easter_gem_hunt:
+    name: "Easter Gem Hunt"
+    description: "Find colorful gems like Easter eggs"
+    type: MINE_BLOCKS
+    active: false  # Enable during Easter
+    blocks:
+      LAPIS_ORE: 16
+      EMERALD_ORE: 4
+      DIAMOND_ORE: 6
+      GOLD_ORE: 12
+    rewards:
+      RABBIT_HIDE: 16
+      CARROT: 64
+      GOLDEN_CARROT: 16
+      EGG: 64
+  
+  # ==========================================
+  # SUMMER QUESTS
+  # ==========================================
+  
+  summer_adventure:
+    name: "Summer Adventure"
+    description: "Explore the world in summer"
+    type: EXPLORE_BLOCKS
+    targetAmount: 5000
+    active: false  # Enable during summer
+    rewards:
+      MELON: 64
+      TROPICAL_FISH: 16
+      COCOA_BEANS: 32
+  
+  summer_treasure:
+    name: "Summer Treasure Hunt"
+    description: "Find buried treasures"
+    type: MINE_BLOCKS
+    active: false
+    blocks:
+      GOLD_ORE: 20
+      EMERALD_ORE: 6
+      DIAMOND_ORE: 8
+    rewards:
+      GOLD_BLOCK: 4
+      EMERALD: 8
+      SUNFLOWER: 16
+  
+  # ==========================================
+  # NEW YEAR QUESTS
+  # ==========================================
+  
+  new_year_resolution:
+    name: "New Year Resolution"
+    description: "Start the year with mining goals"
+    type: MINE_BLOCKS
+    active: false  # Enable during New Year
+    blocks:
+      STONE: 365  # One for each day
+      COAL_ORE: 52  # One for each week
+      IRON_ORE: 24  # Two per month
+      DIAMOND_ORE: 12  # One per month
+    rewards:
+      DIAMOND: 20
+      ENCHANTED_GOLDEN_APPLE: 2
+      FIREWORK_ROCKET: 64
+  
+  # ==========================================
+  # SERVER BIRTHDAY/ANNIVERSARY
+  # ==========================================
+  
+  server_anniversary:
+    name: "Server Anniversary"
+    description: "Celebrate with special mining"
+    type: MINE_BLOCKS
+    active: false  # Enable during server anniversary
+    blocks:
+      DIAMOND_ORE: 10
+      EMERALD_ORE: 5
+      ANCIENT_DEBRIS: 3
+      GOLD_ORE: 15
+    rewards:
+      NETHERITE_INGOT: 1
+      DIAMOND_BLOCK: 2
+      CAKE: 10
+  
+  # ==========================================
+  # WEEKEND EVENTS
+  # ==========================================
+  
+  weekend_warrior:
+    name: "Weekend Warrior"
+    description: "Weekend mining challenge"
+    type: MINE_BLOCKS
+    active: false  # Enable on weekends
+    blocks:
+      STONE: 250
+      IRON_ORE: 40
+      GOLD_ORE: 16
+      DIAMOND_ORE: 6
+    rewards:
+      DIAMOND: 5
+  
+  # ==========================================
+  # DOUBLE XP EVENTS
+  # ==========================================
+  
+  double_xp_mining:
+    name: "Double XP Mining Event"
+    description: "Mine during double XP event"
+    type: MINE_BLOCKS
+    active: false  # Enable during XP events
+    blocks:
+      COAL_ORE: 100
+      IRON_ORE: 50
+      GOLD_ORE: 25
+      LAPIS_ORE: 30
+      REDSTONE_ORE: 40
+    rewards:
+      DIAMOND_PICKAXE: 1
+  
+  # ==========================================
+  # SPECIAL CHALLENGES
+  # ==========================================
+  
+  speed_mining_challenge:
+    name: "Speed Mining Challenge"
+    description: "Complete within 24 hours!"
+    type: MINE_BLOCKS
+    active: false  # Enable for special challenges
+    blocks:
+      STONE: 500
+      COAL_ORE: 64
+      IRON_ORE: 32
+    rewards:
+      NETHERITE_INGOT: 1
+  
+  hardcore_miner:
+    name: "Hardcore Mining Challenge"
+    description: "The ultimate mining test"
+    type: MINE_BLOCKS
+    active: false  # Enable for hardcore events
+    blocks:
+      STONE: 1000
+      DEEPSLATE: 500
+      COAL_ORE: 200
+      IRON_ORE: 100
+      GOLD_ORE: 50
+      DIAMOND_ORE: 25
+      EMERALD_ORE: 15
+      ANCIENT_DEBRIS: 10
+    rewards:
+      NETHERITE_HELMET: 1
+      NETHERITE_CHESTPLATE: 1
+      NETHERITE_LEGGINGS: 1
+      NETHERITE_BOOTS: 1
+      NETHERITE_PICKAXE: 1
+      DRAGON_EGG: 1

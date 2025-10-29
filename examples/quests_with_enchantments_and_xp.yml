@@ -1,0 +1,453 @@
+# Example quest file showing ENCHANTMENTS and XP REWARDS
+# This demonstrates how to configure enchanted items and experience points
+
+quests:
+  # ===== BASIC EXAMPLE: Simple XP Reward =====
+  starter_quest:
+    name: "Getting Started"
+    description: "Explore 100 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 100
+    active: true
+    gui_slot: 0
+    gui_icon: LEATHER_BOOTS
+    xp_reward: 50  # Give 50 XP on completion
+    rewards:
+      BREAD: 5
+      TORCH: 16
+
+  # ===== ENCHANTED SWORD REWARD =====
+  warrior_quest:
+    name: "Warrior Training"
+    description: "Kill 20 zombies"
+    type: KILL_MOBS
+    active: true
+    gui_slot: 1
+    gui_icon: IRON_SWORD
+    xp_reward: 100
+    mobs:
+      ZOMBIE: 20
+    rewards:
+      IRON_SWORD: 1
+      COOKED_BEEF: 16
+    enchantments:
+      IRON_SWORD:
+        SHARPNESS: 3
+        UNBREAKING: 2
+        FIRE_ASPECT: 1
+
+  # ===== ENCHANTED PICKAXE REWARD =====
+  miner_quest:
+    name: "Master Miner"
+    description: "Mine 100 iron ore"
+    type: MINE_BLOCKS
+    active: true
+    gui_slot: 2
+    gui_icon: DIAMOND_PICKAXE
+    xp_reward: 200
+    blocks:
+      IRON_ORE: 100
+    rewards:
+      DIAMOND_PICKAXE: 1
+      IRON_BLOCK: 5
+    enchantments:
+      DIAMOND_PICKAXE:
+        EFFICIENCY: 5
+        UNBREAKING: 3
+        FORTUNE: 3
+
+  # ===== FULL ARMOR SET WITH ENCHANTMENTS =====
+  armor_quest:
+    name: "Suit Up!"
+    description: "Complete dangerous mob challenges"
+    type: KILL_MOBS
+    active: true
+    gui_slot: 3
+    gui_icon: DIAMOND_CHESTPLATE
+    xp_reward: 500
+    mobs:
+      ZOMBIE: 50
+      SKELETON: 50
+      CREEPER: 25
+    rewards:
+      DIAMOND_HELMET: 1
+      DIAMOND_CHESTPLATE: 1
+      DIAMOND_LEGGINGS: 1
+      DIAMOND_BOOTS: 1
+    enchantments:
+      DIAMOND_HELMET:
+        PROTECTION: 4
+        UNBREAKING: 3
+        RESPIRATION: 3
+        AQUA_AFFINITY: 1
+      DIAMOND_CHESTPLATE:
+        PROTECTION: 4
+        UNBREAKING: 3
+      DIAMOND_LEGGINGS:
+        PROTECTION: 4
+        UNBREAKING: 3
+      DIAMOND_BOOTS:
+        PROTECTION: 4
+        UNBREAKING: 3
+        FEATHER_FALLING: 4
+        DEPTH_STRIDER: 3
+
+  # ===== ENCHANTED BOW =====
+  archer_quest:
+    name: "Master Archer"
+    description: "Kill 30 skeletons"
+    type: KILL_MOBS
+    active: true
+    gui_slot: 4
+    gui_icon: BOW
+    xp_reward: 150
+    mobs:
+      SKELETON: 30
+    rewards:
+      BOW: 1
+      ARROW: 128
+    enchantments:
+      BOW:
+        POWER: 5
+        PUNCH: 2
+        FLAME: 1
+        INFINITY: 1
+        UNBREAKING: 3
+
+  # ===== ENCHANTED TOOLS SET =====
+  toolmaster_quest:
+    name: "Tool Master"
+    description: "Craft and upgrade all tools"
+    type: CRAFT_ITEMS
+    active: true
+    gui_slot: 9
+    gui_icon: DIAMOND_PICKAXE
+    xp_reward: 300
+    items:
+      DIAMOND_PICKAXE: 5
+      DIAMOND_AXE: 3
+      DIAMOND_SHOVEL: 3
+    rewards:
+      DIAMOND_PICKAXE: 1
+      DIAMOND_AXE: 1
+      DIAMOND_SHOVEL: 1
+      DIAMOND_HOE: 1
+    enchantments:
+      DIAMOND_PICKAXE:
+        EFFICIENCY: 5
+        FORTUNE: 3
+        UNBREAKING: 3
+        MENDING: 1
+      DIAMOND_AXE:
+        EFFICIENCY: 5
+        UNBREAKING: 3
+        MENDING: 1
+      DIAMOND_SHOVEL:
+        EFFICIENCY: 5
+        UNBREAKING: 3
+        MENDING: 1
+      DIAMOND_HOE:
+        EFFICIENCY: 5
+        UNBREAKING: 3
+        MENDING: 1
+
+  # ===== LEGENDARY SWORD WITH VANILLA MAX ENCHANTS =====
+  legendary_warrior:
+    name: "§6Legendary Warrior"
+    description: "§cHARDCORE: Defeat 100 of each hostile mob"
+    type: KILL_MOBS
+    active: true
+    gui_slot: 10
+    gui_icon: NETHERITE_SWORD
+    xp_reward: 5000  # Massive XP reward!
+    mobs:
+      ZOMBIE: 100
+      SKELETON: 100
+      CREEPER: 100
+      SPIDER: 100
+      ENDERMAN: 50
+    rewards:
+      NETHERITE_SWORD: 1
+      ENCHANTED_GOLDEN_APPLE: 5
+      TOTEM_OF_UNDYING: 1
+    enchantments:
+      NETHERITE_SWORD:
+        SHARPNESS: 5       # Vanilla max
+        LOOTING: 3         # Vanilla max
+        UNBREAKING: 3      # Vanilla max
+        FIRE_ASPECT: 2     # Vanilla max
+        KNOCKBACK: 2       # Vanilla max
+        SWEEPING_EDGE: 3   # Vanilla max
+        MENDING: 1
+
+  # ===== ULTIMATE MINING PICKAXE (VANILLA MAX) =====
+  ultimate_miner:
+    name: "§5Ultimate Miner"
+    description: "§dLEGENDARY: Mine 1000 of each ore"
+    type: MINE_BLOCKS
+    active: true
+    gui_slot: 11
+    gui_icon: NETHERITE_PICKAXE
+    xp_reward: 10000
+    blocks:
+      COAL_ORE: 1000
+      IRON_ORE: 1000
+      GOLD_ORE: 500
+      DIAMOND_ORE: 500
+      EMERALD_ORE: 250
+      ANCIENT_DEBRIS: 100
+    rewards:
+      NETHERITE_PICKAXE: 1
+      DIAMOND_BLOCK: 64
+      NETHERITE_BLOCK: 10
+    enchantments:
+      NETHERITE_PICKAXE:
+        EFFICIENCY: 5       # Vanilla max
+        FORTUNE: 3          # Vanilla max
+        UNBREAKING: 3       # Vanilla max
+        MENDING: 1
+
+  # ===== FISHING ROD WITH ENCHANTS =====
+  master_fisherman:
+    name: "Master Fisherman"
+    description: "Catch lots of fish (break blocks in water)"
+    type: BREAK_BLOCKS
+    active: true
+    gui_slot: 12
+    gui_icon: FISHING_ROD
+    xp_reward: 100
+    blocks:
+      KELP: 100
+      SEAGRASS: 100
+    rewards:
+      FISHING_ROD: 1
+      COOKED_COD: 32
+    enchantments:
+      FISHING_ROD:
+        LUCK_OF_THE_SEA: 3
+        LURE: 3
+        UNBREAKING: 3
+        MENDING: 1
+
+  # ===== ELYTRA WITH ENCHANTMENTS =====
+  flying_master:
+    name: "§bMaster of the Skies"
+    description: "§eExplore 100,000 blocks"
+    type: EXPLORE_BLOCKS
+    targetAmount: 100000
+    active: true
+    gui_slot: 13
+    gui_icon: ELYTRA
+    xp_reward: 2000
+    rewards:
+      ELYTRA: 1
+      FIREWORK_ROCKET: 64
+    enchantments:
+      ELYTRA:
+        UNBREAKING: 3
+        MENDING: 1
+
+  # ===== TRIDENT WITH ENCHANTMENTS =====
+  ocean_warrior:
+    name: "§3Ocean Warrior"
+    description: "Defeat 50 drowned"
+    type: KILL_MOBS
+    active: true
+    gui_slot: 14
+    gui_icon: TRIDENT
+    xp_reward: 400
+    mobs:
+      DROWNED: 50
+    rewards:
+      TRIDENT: 1
+      HEART_OF_THE_SEA: 1
+    enchantments:
+      TRIDENT:
+        LOYALTY: 3
+        CHANNELING: 1
+        RIPTIDE: 3
+        IMPALING: 5
+        UNBREAKING: 3
+        MENDING: 1
+
+  # ===== CROSSBOW WITH ENCHANTMENTS =====
+  raid_defender:
+    name: "Raid Defender"
+    description: "Defeat 20 pillagers"
+    type: KILL_MOBS
+    active: true
+    gui_slot: 18
+    gui_icon: CROSSBOW
+    xp_reward: 250
+    mobs:
+      PILLAGER: 20
+    rewards:
+      CROSSBOW: 1
+      ARROW: 256
+      FIREWORK_ROCKET: 64
+    enchantments:
+      CROSSBOW:
+        QUICK_CHARGE: 3
+        MULTISHOT: 1
+        PIERCING: 4
+        UNBREAKING: 3
+        MENDING: 1
+
+  # ===== ULTIMATE ARMOR SET (NETHERITE - VANILLA MAX) =====
+  ultimate_protection:
+    name: "§4Ultimate Protection"
+    description: "§cHARDCORE: Complete all combat challenges"
+    type: KILL_MOBS
+    active: true
+    gui_slot: 19
+    gui_icon: NETHERITE_CHESTPLATE
+    xp_reward: 15000  # HUGE XP!
+    mobs:
+      ZOMBIE: 500
+      SKELETON: 500
+      CREEPER: 300
+      WITHER_SKELETON: 100
+      BLAZE: 100
+      ENDERMAN: 200
+    rewards:
+      NETHERITE_HELMET: 1
+      NETHERITE_CHESTPLATE: 1
+      NETHERITE_LEGGINGS: 1
+      NETHERITE_BOOTS: 1
+      TOTEM_OF_UNDYING: 5
+      ENCHANTED_GOLDEN_APPLE: 32
+    enchantments:
+      NETHERITE_HELMET:
+        PROTECTION: 4         # Vanilla max
+        UNBREAKING: 3         # Vanilla max
+        RESPIRATION: 3        # Vanilla max
+        AQUA_AFFINITY: 1
+        MENDING: 1
+      NETHERITE_CHESTPLATE:
+        PROTECTION: 4
+        UNBREAKING: 3
+        MENDING: 1
+      NETHERITE_LEGGINGS:
+        PROTECTION: 4
+        UNBREAKING: 3
+        MENDING: 1
+        SWIFT_SNEAK: 3        # Vanilla max
+      NETHERITE_BOOTS:
+        PROTECTION: 4
+        UNBREAKING: 3
+        FEATHER_FALLING: 4    # Vanilla max
+        DEPTH_STRIDER: 3      # Vanilla max
+        SOUL_SPEED: 3         # Vanilla max
+        MENDING: 1
+
+  # ===== MULTIPLE ITEMS WITH DIFFERENT ENCHANTS =====
+  complete_loadout:
+    name: "§6Complete Loadout"
+    description: "§eGet a full set of enchanted gear"
+    type: EXPLORE_BLOCKS
+    targetAmount: 50000
+    active: true
+    gui_slot: 20
+    gui_icon: ENCHANTED_BOOK
+    xp_reward: 3000
+    rewards:
+      DIAMOND_SWORD: 1
+      DIAMOND_PICKAXE: 1
+      DIAMOND_AXE: 1
+      BOW: 1
+      SHIELD: 1
+    enchantments:
+      DIAMOND_SWORD:
+        SHARPNESS: 5
+        LOOTING: 3
+        SWEEPING_EDGE: 3
+        UNBREAKING: 3
+        MENDING: 1
+      DIAMOND_PICKAXE:
+        EFFICIENCY: 5
+        FORTUNE: 3
+        UNBREAKING: 3
+        MENDING: 1
+      DIAMOND_AXE:
+        SHARPNESS: 5
+        EFFICIENCY: 5
+        UNBREAKING: 3
+        MENDING: 1
+      BOW:
+        POWER: 5
+        PUNCH: 2
+        FLAME: 1
+        INFINITY: 1
+        UNBREAKING: 3
+      SHIELD:
+        UNBREAKING: 3
+        MENDING: 1
+
+  # ===== BOOK WITH ENCHANTMENTS (for enchanting) =====
+  enchanted_knowledge:
+    name: "Enchanted Knowledge"
+    description: "Craft 10 bookshelves"
+    type: CRAFT_ITEMS
+    active: true
+    gui_slot: 21
+    gui_icon: ENCHANTED_BOOK
+    xp_reward: 500
+    items:
+      BOOKSHELF: 10
+    rewards:
+      ENCHANTED_BOOK: 3
+      EXPERIENCE_BOTTLE: 64
+    # Note: ENCHANTED_BOOK can't have enchantments applied directly
+    # But you can give enchanted books as rewards!
+
+  # ===== SHEARS WITH EFFICIENCY =====
+  wool_collector:
+    name: "Wool Collector"
+    description: "Collect wool by killing sheep"
+    type: KILL_MOBS
+    active: true
+    gui_slot: 22
+    gui_icon: SHEARS
+    xp_reward: 75
+    mobs:
+      SHEEP: 50
+    rewards:
+      SHEARS: 1
+      WHITE_WOOL: 64
+    enchantments:
+      SHEARS:
+        EFFICIENCY: 5
+        UNBREAKING: 3
+        MENDING: 1
+
+  # ===== EXAMPLE: XP ONLY (No Item Rewards) =====
+  xp_grind:
+    name: "Experience Grinder"
+    description: "Pure XP reward quest"
+    type: KILL_MOBS
+    active: true
+    gui_slot: 23
+    gui_icon: EXPERIENCE_BOTTLE
+    xp_reward: 1000  # Just XP, no items
+    mobs:
+      ZOMBIE: 100
+    rewards: {}  # Empty rewards, just XP
+
+# ===== ENCHANTMENT REFERENCE =====
+# VANILLA MAX LEVELS (ALWAYS use these):
+#   SHARPNESS/POWER/EFFICIENCY/PROTECTION: 5
+#   FEATHER_FALLING/PIERCING: 4
+#   LOOTING/FORTUNE/THORNS/RESPIRATION/DEPTH_STRIDER/SWEEPING_EDGE/UNBREAKING/SWIFT_SNEAK/SOUL_SPEED/LURE/LUCK_OF_THE_SEA: 3
+#   KNOCKBACK/FIRE_ASPECT/PUNCH/FROST_WALKER: 2
+#   MENDING/SILK_TOUCH/INFINITY/AQUA_AFFINITY/CHANNELING/FLAME/MULTISHOT: 1
+
+# XP Levels Guide:
+#   Small quests: 50-100 XP
+#   Medium quests: 100-500 XP
+#   Large quests: 500-2000 XP
+#   Epic quests: 2000-5000 XP
+#   Legendary quests: 5000-10000 XP
+#   Ultimate quests: 10000+ XP
+
+# For complete vanilla enchantment reference, see: VANILLA_ENCHANTMENT_LEVELS.md
+

@@ -1,0 +1,241 @@
+# ==========================================
+# PROGRESSIVE MINING QUESTS (WITH PREREQUISITES)
+# ==========================================
+# A complete progression system from novice to master
+# Prerequisites enforce proper quest order!
+
+quests:
+  # ==========================================
+  # TIER 1 - NOVICE (Early Game)
+  # ==========================================
+  
+  tier1_novice:
+    name: "Novice Miner I"
+    description: "Your first mining adventure"
+    type: MINE_BLOCKS
+    active: true
+    # No prerequisite - starting quest
+    blocks:
+      STONE: 30
+      COAL_ORE: 8
+    rewards:
+      STONE_PICKAXE: 1
+      TORCH: 32
+      BREAD: 8
+  
+  tier1_apprentice:
+    name: "Novice Miner II"
+    description: "Learn to find iron"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: tier1_novice  # 🔒 Requires Novice Miner I
+    blocks:
+      STONE: 64
+      COAL_ORE: 16
+      IRON_ORE: 8
+    rewards:
+      IRON_PICKAXE: 1
+      TORCH: 64
+      COOKED_BEEF: 16
+  
+  tier1_advanced:
+    name: "Novice Miner III"
+    description: "Master the basics"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: tier1_apprentice  # 🔒 Requires Novice Miner II
+    blocks:
+      STONE: 100
+      COAL_ORE: 32
+      IRON_ORE: 16
+      COPPER_ORE: 12
+    rewards:
+      IRON_HELMET: 1
+      IRON_CHESTPLATE: 1
+      IRON_LEGGINGS: 1
+      IRON_BOOTS: 1
+      TORCH: 64
+      SHIELD: 1
+  
+  # ==========================================
+  # TIER 2 - JOURNEYMAN (Mid Game)
+  # ==========================================
+  
+  tier2_journeyman:
+    name: "Journeyman Miner I"
+    description: "Seek valuable ores"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: tier1_advanced  # 🔒 Requires Novice Miner III
+    blocks:
+      IRON_ORE: 24
+      GOLD_ORE: 8
+      LAPIS_ORE: 16
+      REDSTONE_ORE: 24
+    rewards:
+      DIAMOND_PICKAXE: 1
+      TORCH: 64
+      GOLDEN_APPLE: 1
+  
+  tier2_advanced:
+    name: "Journeyman Miner II"
+    description: "Venture into the depths"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: tier2_journeyman  # 🔒 Requires Journeyman Miner I
+    blocks:
+      DEEPSLATE: 64
+      DEEPSLATE_IRON_ORE: 16
+      DEEPSLATE_GOLD_ORE: 8
+      DEEPSLATE_LAPIS_ORE: 12
+      DIAMOND_ORE: 3
+    rewards:
+      DIAMOND: 5
+  
+  tier2_master:
+    name: "Journeyman Miner III"
+    description: "Prove your mining prowess"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: tier2_advanced  # 🔒 Requires Journeyman Miner II
+    blocks:
+      DIAMOND_ORE: 8
+      DEEPSLATE_DIAMOND_ORE: 4
+      EMERALD_ORE: 2
+      GOLD_ORE: 12
+    rewards:
+      DIAMOND: 8
+      DIAMOND_PICKAXE: 1
+  
+  # ==========================================
+  # TIER 3 - EXPERT (Late Game)
+  # ==========================================
+  
+  tier3_expert:
+    name: "Expert Miner I"
+    description: "Master rare ore collection"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: tier2_master  # 🔒 Requires Journeyman Miner III
+    blocks:
+      DIAMOND_ORE: 16
+      DEEPSLATE_DIAMOND_ORE: 8
+      EMERALD_ORE: 6
+      DEEPSLATE_EMERALD_ORE: 3
+    rewards:
+      DIAMOND: 16
+  
+  tier3_nether:
+    name: "Expert Miner II - Nether"
+    description: "Conquer the Nether"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: tier3_expert  # 🔒 Requires Expert Miner I
+    blocks:
+      NETHERRACK: 256
+      NETHER_GOLD_ORE: 16
+      NETHER_QUARTZ_ORE: 32
+      ANCIENT_DEBRIS: 2
+    rewards:
+      DIAMOND: 10
+  
+  tier3_master:
+    name: "Expert Miner III"
+    description: "Collect everything"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: tier3_nether  # 🔒 Requires Expert Miner II
+    blocks:
+      COAL_ORE: 128
+      COPPER_ORE: 64
+      IRON_ORE: 64
+      GOLD_ORE: 32
+      LAPIS_ORE: 32
+      REDSTONE_ORE: 64
+      DIAMOND_ORE: 16
+      EMERALD_ORE: 8
+    rewards:
+      NETHERITE_INGOT: 1
+      BEACON: 1
+      DIAMOND: 20
+  
+  # ==========================================
+  # TIER 4 - MASTER (End Game)
+  # ==========================================
+  
+  tier4_legendary:
+    name: "Master Miner I"
+    description: "Achieve legendary status"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: tier3_master  # 🔒 Requires Expert Miner III
+    blocks:
+      ANCIENT_DEBRIS: 8
+      DIAMOND_ORE: 32
+      EMERALD_ORE: 16
+      NETHER_QUARTZ_ORE: 128
+    rewards:
+      NETHERITE_INGOT: 2
+  
+  tier4_ultimate:
+    name: "Master Miner II - Ultimate"
+    description: "The final challenge"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: tier4_legendary  # 🔒 Requires Master Miner I
+    blocks:
+      STONE: 1000
+      DEEPSLATE: 500
+      COAL_ORE: 256
+      IRON_ORE: 128
+      GOLD_ORE: 64
+      DIAMOND_ORE: 32
+      EMERALD_ORE: 16
+      ANCIENT_DEBRIS: 12
+      NETHERRACK: 1000
+    rewards:
+      NETHERITE_HELMET: 1
+      NETHERITE_CHESTPLATE: 1
+      NETHERITE_LEGGINGS: 1
+      NETHERITE_BOOTS: 1
+      NETHERITE_SWORD: 1
+      NETHERITE_PICKAXE: 1
+  
+  tier4_grandmaster:
+    name: "Grandmaster Miner"
+    description: "The ultimate mining achievement"
+    type: MINE_BLOCKS
+    active: true
+    prerequisite: tier4_ultimate  # 🔒 Requires Master Miner II
+    blocks:
+      STONE: 2000
+      DEEPSLATE: 1000
+      COAL_ORE: 512
+      COPPER_ORE: 256
+      IRON_ORE: 256
+      GOLD_ORE: 128
+      LAPIS_ORE: 128
+      REDSTONE_ORE: 256
+      DIAMOND_ORE: 64
+      EMERALD_ORE: 32
+      ANCIENT_DEBRIS: 20
+      NETHERRACK: 2000
+      NETHER_GOLD_ORE: 64
+      NETHER_QUARTZ_ORE: 256
+      END_STONE: 512
+    rewards:
+      DRAGON_EGG: 1
+      NETHERITE_BLOCK: 2
+      ELYTRA: 1
+      SHULKER_BOX: 4
+
+# ==========================================
+# PROGRESSION CHAIN:
+# ==========================================
+# Tier 1: tier1_novice → tier1_apprentice → tier1_advanced
+# Tier 2: tier2_journeyman → tier2_advanced → tier2_master
+# Tier 3: tier3_expert → tier3_nether → tier3_master
+# Tier 4: tier4_legendary → tier4_ultimate → tier4_grandmaster
+#
+# This creates a perfect linear progression from novice to grandmaster!
+# Each quest unlocks naturally after completing the previous one.

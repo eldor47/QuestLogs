@@ -1,0 +1,354 @@
+# ==========================================
+# MOB KILL QUESTS
+# ==========================================
+# Track kills of specific mob types
+
+quests:
+  # ==========================================
+  # BEGINNER MOB QUESTS
+  # ==========================================
+  
+  monster_slayer_1:
+    name: "Monster Slayer I"
+    description: "Kill basic hostile mobs"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      ZOMBIE: 10
+      SKELETON: 10
+      SPIDER: 5
+    rewards:
+      IRON_SWORD: 1
+      COOKED_BEEF: 16
+      TORCH: 32
+  
+  undead_hunter:
+    name: "Undead Hunter"
+    description: "Eliminate undead threats"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      ZOMBIE: 20
+      SKELETON: 15
+      ZOMBIE_VILLAGER: 5
+    rewards:
+      DIAMOND_SWORD: 1
+      GOLDEN_APPLE: 2
+  
+  spider_slayer:
+    name: "Spider Slayer"
+    description: "Clear out spider nests"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      SPIDER: 15
+      CAVE_SPIDER: 10
+    rewards:
+      BOW: 1
+      ARROW: 64
+      STRING: 32
+  
+  creeper_disposal:
+    name: "Creeper Disposal"
+    description: "Safely eliminate creepers"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      CREEPER: 15
+    rewards:
+      DIAMOND: 5
+      TNT: 8
+      SHIELD: 1
+  
+  # ==========================================
+  # INTERMEDIATE MOB QUESTS
+  # ==========================================
+  
+  monster_slayer_2:
+    name: "Monster Slayer II"
+    description: "Fight tougher enemies"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      ZOMBIE: 30
+      SKELETON: 25
+      CREEPER: 20
+      SPIDER: 15
+      ENDERMAN: 5
+    rewards:
+      DIAMOND_SWORD: 1
+      DIAMOND_HELMET: 1
+      DIAMOND_CHESTPLATE: 1
+      GOLDEN_APPLE: 3
+  
+  explosive_expert:
+    name: "Explosive Expert"
+    description: "Master creeper encounters"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      CREEPER: 25
+    rewards:
+      TNT: 16
+      GUNPOWDER: 64
+      DIAMOND: 10
+  
+  marksman:
+    name: "Marksman"
+    description: "Defeat ranged enemies"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      SKELETON: 30
+      STRAY: 10
+      PILLAGER: 15
+    rewards:
+      BOW: 1
+      ARROW: 128
+      DIAMOND: 8
+  
+  # ==========================================
+  # NETHER MOB QUESTS
+  # ==========================================
+  
+  nether_warrior:
+    name: "Nether Warrior"
+    description: "Fight Nether creatures"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      ZOMBIFIED_PIGLIN: 20
+      PIGLIN: 15
+      MAGMA_CUBE: 10
+    rewards:
+      GOLD_INGOT: 32
+      NETHERITE_SCRAP: 1
+      GOLDEN_APPLE: 2
+  
+  blaze_hunter:
+    name: "Blaze Hunter"
+    description: "Collect blaze rods"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      BLAZE: 20
+    rewards:
+      BLAZE_ROD: 10
+      FIRE_CHARGE: 16
+      DIAMOND: 10
+  
+  ghast_slayer:
+    name: "Ghast Slayer"
+    description: "Defeat flying terrors"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      GHAST: 10
+    rewards:
+      GHAST_TEAR: 5
+      DIAMOND: 15
+      BOW: 1
+  
+  wither_skeleton_hunter:
+    name: "Wither Skeleton Hunter"
+    description: "Hunt wither skeletons"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      WITHER_SKELETON: 15
+    rewards:
+      WITHER_SKELETON_SKULL: 1
+      DIAMOND: 20
+      NETHERITE_INGOT: 1
+  
+  hoglin_hunter:
+    name: "Hoglin Hunter"
+    description: "Hunt crimson forest hoglins"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      HOGLIN: 20
+    rewards:
+      PORKCHOP: 64
+      LEATHER: 32
+      DIAMOND: 10
+  
+  # ==========================================
+  # END MOB QUESTS
+  # ==========================================
+  
+  enderman_eliminator:
+    name: "Enderman Eliminator"
+    description: "Collect ender pearls"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      ENDERMAN: 25
+    rewards:
+      ENDER_PEARL: 16
+      DIAMOND: 10
+      ENDER_CHEST: 1
+  
+  shulker_hunter:
+    name: "Shulker Hunter"
+    description: "Defeat End shulkers"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      SHULKER: 10
+    rewards:
+      SHULKER_SHELL: 2
+      DIAMOND: 20
+      ENDER_PEARL: 16
+  
+  # ==========================================
+  # BOSS MOB QUESTS
+  # ==========================================
+  
+  elder_guardian_slayer:
+    name: "Elder Guardian Slayer"
+    description: "Defeat ocean monument guardians"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      ELDER_GUARDIAN: 3
+      GUARDIAN: 15
+    rewards:
+      DIAMOND: 30
+      PRISMARINE_SHARD: 64
+      SPONGE: 8
+  
+  wither_challenger:
+    name: "Wither Challenger"
+    description: "Defeat the Wither"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      WITHER: 1
+    rewards:
+      NETHER_STAR: 1
+      DIAMOND_BLOCK: 5
+      NETHERITE_INGOT: 2
+  
+  dragon_slayer:
+    name: "Dragon Slayer"
+    description: "Defeat the Ender Dragon"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      ENDER_DRAGON: 1
+    rewards:
+      DRAGON_EGG: 1
+      ELYTRA: 1
+      DIAMOND_BLOCK: 10
+      ENCHANTED_GOLDEN_APPLE: 5
+  
+  # ==========================================
+  # PASSIVE MOB QUESTS
+  # ==========================================
+  
+  hunter:
+    name: "Hunter"
+    description: "Hunt for food"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      COW: 20
+      PIG: 15
+      CHICKEN: 25
+    rewards:
+      COOKED_BEEF: 64
+      COOKED_PORKCHOP: 48
+      COOKED_CHICKEN: 64
+  
+  fisherman:
+    name: "Fisherman"
+    description: "Catch fish (kill method)"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      COD: 30
+      SALMON: 20
+    rewards:
+      FISHING_ROD: 1
+      COOKED_COD: 64
+      DIAMOND: 5
+  
+  # ==========================================
+  # RAID QUESTS
+  # ==========================================
+  
+  pillager_patrol_killer:
+    name: "Pillager Patrol Killer"
+    description: "Eliminate pillager patrols"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      PILLAGER: 20
+      VINDICATOR: 10
+      RAVAGER: 3
+    rewards:
+      DIAMOND: 20
+      EMERALD: 10
+      TOTEM_OF_UNDYING: 1
+  
+  raid_defender:
+    name: "Raid Defender"
+    description: "Defend your village"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      PILLAGER: 30
+      VINDICATOR: 15
+      EVOKER: 5
+      RAVAGER: 5
+    rewards:
+      DIAMOND: 30
+      EMERALD: 20
+      TOTEM_OF_UNDYING: 2
+      ENCHANTED_GOLDEN_APPLE: 3
+  
+  # ==========================================
+  # MIXED MONSTER QUESTS
+  # ==========================================
+  
+  monster_slayer_3:
+    name: "Monster Slayer III - Master"
+    description: "The ultimate monster hunter challenge"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      ZOMBIE: 50
+      SKELETON: 40
+      CREEPER: 30
+      SPIDER: 25
+      ENDERMAN: 15
+      WITCH: 10
+      SLIME: 20
+    rewards:
+      NETHERITE_SWORD: 1
+      NETHERITE_HELMET: 1
+      NETHERITE_CHESTPLATE: 1
+      DIAMOND_BLOCK: 3
+      ENCHANTED_GOLDEN_APPLE: 5
+  
+  legendary_hunter:
+    name: "Legendary Hunter"
+    description: "Hunt the rarest mobs"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      ENDER_DRAGON: 1
+      WITHER: 1
+      ELDER_GUARDIAN: 3
+      SHULKER: 10
+      WITHER_SKELETON: 20
+    rewards:
+      NETHERITE_BLOCK: 2
+      DRAGON_EGG: 1
+      NETHER_STAR: 1
+      ELYTRA: 1
+      SHULKER_BOX: 5
+      ENCHANTED_GOLDEN_APPLE: 10
+
+
