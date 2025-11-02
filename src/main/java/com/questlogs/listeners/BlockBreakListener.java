@@ -92,10 +92,19 @@ public class BlockBreakListener implements Listener {
                 continue; // This block is not a target for this quest
             }
             
+            // Get current progress for this specific block type
+            int currentProgress = plugin.getProgressManager().getBlockProgress(playerId, questId, materialName);
+            
+            // Skip if this block type has already reached its target
+            if (currentProgress >= targetAmount) {
+                continue;
+            }
+            
             // Add progress for this specific block type
             plugin.getProgressManager().addBlockProgress(playerId, questId, materialName, 1);
             
-            int currentProgress = plugin.getProgressManager().getBlockProgress(playerId, questId, materialName);
+            // Get updated progress
+            currentProgress = plugin.getProgressManager().getBlockProgress(playerId, questId, materialName);
             
             // Check if this specific block target is complete
             if (currentProgress == targetAmount) {

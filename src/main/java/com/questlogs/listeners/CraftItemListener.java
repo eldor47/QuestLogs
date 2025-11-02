@@ -101,10 +101,22 @@ public class CraftItemListener implements Listener {
                 continue; // This item is not a target for this quest
             }
             
-            // Add progress for this specific item type
-            plugin.getProgressManager().addBlockProgress(playerId, questId, materialName, craftAmount);
-            
+            // Get current progress for this specific item type
             int currentProgress = plugin.getProgressManager().getBlockProgress(playerId, questId, materialName);
+            
+            // Skip if this item type has already reached its target
+            if (currentProgress >= targetAmount) {
+                continue;
+            }
+            
+            // Calculate how much progress to add (don't exceed target)
+            int progressToAdd = Math.min(craftAmount, targetAmount - currentProgress);
+            
+            // Add progress for this specific item type
+            plugin.getProgressManager().addBlockProgress(playerId, questId, materialName, progressToAdd);
+            
+            // Get updated progress
+            currentProgress = plugin.getProgressManager().getBlockProgress(playerId, questId, materialName);
             
             // Check if this specific item target is complete
             if (currentProgress >= targetAmount) {
