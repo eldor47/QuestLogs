@@ -1,5 +1,5 @@
 name: QuestLogs
-version: 1.0.0
+version: 1.0.1
 main: com.questlogs.QuestLogsPlugin
 api-version: 1.21
 description: Quest system for tracking player exploration and achievements
