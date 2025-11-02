@@ -87,13 +87,21 @@ public class MobKillListener implements Listener {
                 continue;
             }
             
+            // Get current progress and target for this specific mob type
+            PlayerQuestProgress progress = progressManager.getPlayerProgress(player.getUniqueId());
+            int currentProgress = progress.getMobProgress(questId, mobType);
+            int targetAmount = quest.getMobTarget(mobType);
+            
+            // Skip if this mob type has already reached its target
+            if (currentProgress >= targetAmount) {
+                continue;
+            }
+            
             // Increment progress
             progressManager.addMobProgress(player.getUniqueId(), questId, mobType, 1);
             
             // Get updated progress
-            PlayerQuestProgress progress = progressManager.getPlayerProgress(player.getUniqueId());
             int newProgress = progress.getMobProgress(questId, mobType);
-            int targetAmount = quest.getMobTarget(mobType);
             
             // Show progress if enabled
             if (plugin.getConfig().getBoolean("show-mob-progress", true)) {
