@@ -27,13 +27,14 @@ public class QuestAdminTabCompleter implements TabCompleter {
             // First argument: subcommands
             completions.add("reload");
             completions.add("complete");
+            completions.add("reset");
             return filterCompletions(completions, args[0]);
         }
         
         if (args.length == 2) {
             // Second argument depends on subcommand
-            if (args[0].equalsIgnoreCase("complete")) {
-                // Show player names
+            if (args[0].equalsIgnoreCase("complete") || args[0].equalsIgnoreCase("reset")) {
+                // Show player names (online players)
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     completions.add(player.getName());
                 }
@@ -42,8 +43,8 @@ public class QuestAdminTabCompleter implements TabCompleter {
         }
         
         if (args.length == 3) {
-            // Third argument: quest ID for complete command
-            if (args[0].equalsIgnoreCase("complete")) {
+            // Third argument: quest ID for complete or reset command
+            if (args[0].equalsIgnoreCase("complete") || args[0].equalsIgnoreCase("reset")) {
                 for (Quest quest : plugin.getQuestManager().getAllQuests()) {
                     if (quest.isActive()) {
                         completions.add(quest.getId());
