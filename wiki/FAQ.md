@@ -69,9 +69,13 @@ Common questions and solutions for QuestLogs.
 **A:** Yes! Use the enchantments format:
 ```yaml
 rewards:
-  ENCHANTED_BOOK:
-    enchantments:
-      FORTUNE: 3
+  IRON_PICKAXE: 1
+  ENCHANTED_BOOK: 1  # Enchanted books are supported!
+enchantments:
+  IRON_PICKAXE:
+    EFFICIENCY: 3
+  ENCHANTED_BOOK:  # Stored enchantments for books
+    FORTUNE: 3
 ```
 
 ### Q: What happens if a player's inventory is full?
@@ -89,10 +93,12 @@ rewards:
 ```
 
 ### Q: Can enchanted books have multiple enchantments?
-**A:** Yes:
+**A:** Yes! Enchanted books with stored enchantments are fully supported:
 ```yaml
-ENCHANTED_BOOK:
-  enchantments:
+rewards:
+  ENCHANTED_BOOK: 1
+enchantments:
+  ENCHANTED_BOOK:
     FORTUNE: 3
     UNBREAKING: 3
 ```

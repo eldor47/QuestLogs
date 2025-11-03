@@ -91,9 +91,10 @@ diamond_miner:
   required_amount: 50
   rewards:
     DIAMOND_PICKAXE: 1
+    ENCHANTED_BOOK: 1
+  enchantments:
     ENCHANTED_BOOK:
-      enchantments:
-        FORTUNE: 3
+      FORTUNE: 3
   xp_reward: 1000
 ```
 
@@ -143,9 +144,10 @@ lumberjack:
   required_amount: 500
   rewards:
     DIAMOND_AXE: 1
+    ENCHANTED_BOOK: 1
+  enchantments:
     ENCHANTED_BOOK:
-      enchantments:
-        EFFICIENCY: 5
+      EFFICIENCY: 5
   xp_reward: 300
 ```
 
@@ -254,9 +256,10 @@ zombie_slayer:
   required_amount: 50
   rewards:
     DIAMOND_SWORD: 1
+    ENCHANTED_BOOK: 1
+  enchantments:
     ENCHANTED_BOOK:
-      enchantments:
-        SHARPNESS: 5
+      SHARPNESS: 5
   xp_reward: 500
 ```
 
@@ -295,9 +298,10 @@ dragon_slayer:
   required_amount: 1
   rewards:
     NETHERITE_INGOT: 5
+    ENCHANTED_BOOK: 1
+  enchantments:
     ENCHANTED_BOOK:
-      enchantments:
-        MENDING: 1
+      MENDING: 1
   xp_reward: 5000
 ```
 
@@ -337,9 +341,10 @@ master_miner:
     - apprentice_miner  # Must complete apprentice_miner first
   rewards:
     NETHERITE_PICKAXE: 1
+    ENCHANTED_BOOK: 1
+  enchantments:
     ENCHANTED_BOOK:
-      enchantments:
-        FORTUNE: 3
+      FORTUNE: 3
   xp_reward: 1000
 ```
 
