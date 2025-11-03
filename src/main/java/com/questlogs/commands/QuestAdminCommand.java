@@ -43,6 +43,9 @@ public class QuestAdminCommand implements CommandExecutor {
             case "complete":
                 handleCompleteCommand(sender, args);
                 break;
+            case "reset":
+                handleResetCommand(sender, args);
+                break;
             default:
                 sendHelpMessage(sender);
                 break;
@@ -55,6 +58,7 @@ public class QuestAdminCommand implements CommandExecutor {
         sender.sendMessage(ChatColor.GOLD + "=== Quest Admin Commands ===");
         sender.sendMessage(ChatColor.YELLOW + "/questadmin reload - Reload quest configuration");
         sender.sendMessage(ChatColor.YELLOW + "/questadmin complete <player> <quest_id> - Complete a quest for a player");
+        sender.sendMessage(ChatColor.YELLOW + "/questadmin reset <player> <quest_id> - Reset a player's progress on a quest");
     }
     
     private void handleCompleteCommand(CommandSender sender, String[] args) {
@@ -140,6 +144,100 @@ public class QuestAdminCommand implements CommandExecutor {
         target.sendMessage(ChatColor.GRAY + "Completed by an administrator");
         target.sendMessage(ChatColor.YELLOW + "Rewards: " + ChatColor.GREEN + rewardText);
         target.sendMessage(ChatColor.GOLD + "=========================");
+    }
+    
+    private void handleResetCommand(CommandSender sender, String[] args) {
+        if (args.length < 3) {
+            sender.sendMessage(ChatColor.RED + "Usage: /questadmin reset <player> <quest_id>");
+            return;
+        }
+        
+        String playerName = args[1];
+        String questId = args[2];
+        
+        // Allow resetting for offline players too (check by UUID or name)
+        Player target = Bukkit.getPlayer(playerName);
+        java.util.UUID playerUUID = null;
+        
+        if (target != null) {
+            playerUUID = target.getUniqueId();
+        } else {
+            // Try to find player by name from server (offline players)
+            // Note: getOfflinePlayer may be deprecated but is the standard way to get offline players
+            @SuppressWarnings("deprecation")
+            org.bukkit.OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
+            if (offlinePlayer != null && offlinePlayer.hasPlayedBefore()) {
+                playerUUID = offlinePlayer.getUniqueId();
+            }
+        }
+        
+        if (playerUUID == null) {
+            sender.sendMessage(ChatColor.RED + "Player not found: " + playerName);
+            sender.sendMessage(ChatColor.GRAY + "Note: Player must have played on the server before");
+            return;
+        }
+        
+        Quest quest = plugin.getQuestManager().getQuest(questId);
+        if (quest == null || !quest.isActive()) {
+            sender.sendMessage(ChatColor.RED + "Quest not found: " + questId);
+            return;
+        }
+        
+        // Reset progress based on quest type
+        boolean reset = false;
+        
+        if (quest.getType() == QuestType.MINE_BLOCKS && quest.hasBlockTargets()) {
+            // Reset all block targets to 0
+            for (Map.Entry<String, Integer> entry : quest.getBlockTargets().entrySet()) {
+                String blockType = entry.getKey();
+                plugin.getProgressManager().setBlockProgress(playerUUID, questId, blockType, 0);
+            }
+            reset = true;
+        } else if (quest.getType() == QuestType.BREAK_BLOCKS && quest.hasBlockTargets()) {
+            // Reset all block targets to 0
+            for (Map.Entry<String, Integer> entry : quest.getBlockTargets().entrySet()) {
+                String blockType = entry.getKey();
+                plugin.getProgressManager().setBlockProgress(playerUUID, questId, blockType, 0);
+            }
+            reset = true;
+        } else if (quest.getType() == QuestType.PLACE_BLOCKS && quest.hasBlockTargets()) {
+            // Reset all block targets to 0
+            for (Map.Entry<String, Integer> entry : quest.getBlockTargets().entrySet()) {
+                String blockType = entry.getKey();
+                plugin.getProgressManager().setBlockProgress(playerUUID, questId, blockType, 0);
+            }
+            reset = true;
+        } else if (quest.getType() == QuestType.CRAFT_ITEMS && quest.hasBlockTargets()) {
+            // Reset all item targets to 0 (uses blockTargets for items)
+            for (Map.Entry<String, Integer> entry : quest.getBlockTargets().entrySet()) {
+                String itemType = entry.getKey();
+                plugin.getProgressManager().setBlockProgress(playerUUID, questId, itemType, 0);
+            }
+            reset = true;
+        } else if (quest.getType() == QuestType.KILL_MOBS && quest.hasMobTargets()) {
+            // Reset all mob targets to 0
+            for (Map.Entry<String, Integer> entry : quest.getMobTargets().entrySet()) {
+                String mobType = entry.getKey();
+                plugin.getProgressManager().setMobProgress(playerUUID, questId, mobType, 0);
+            }
+            reset = true;
+        } else {
+            // Regular quest (exploration, etc.) - reset progress to 0
+            plugin.getProgressManager().setPlayerProgress(playerUUID, questId, 0);
+            reset = true;
+        }
+        
+        if (reset) {
+            // Notify admin
+            sender.sendMessage(ChatColor.GREEN + "✓ Reset quest progress for " + playerName + " on quest '" + quest.getName() + "'");
+            
+            // Notify player if online
+            if (target != null && target.isOnline()) {
+                target.sendMessage(ChatColor.YELLOW + "Your progress on quest '" + quest.getName() + "' has been reset by an administrator.");
+            }
+        } else {
+            sender.sendMessage(ChatColor.RED + "Failed to reset quest progress");
+        }
     }
     
 }
