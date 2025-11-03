@@ -194,6 +194,76 @@ quests:
       HOPPER: 8
   
   # ==========================================
+  # ENCHANTED BOOK REWARDS
+  # ==========================================
+  
+  # Enchanted book with single enchantment
+  enchanted_book_basic:
+    name: "Magic Efficiency"
+    description: "Mine 50 iron ore"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      IRON_ORE: 50
+    rewards:
+      ENCHANTED_BOOK: 1
+      DIAMOND: 5
+    enchantments:
+      ENCHANTED_BOOK:
+        EFFICIENCY: 3
+  
+  # Enchanted book with multiple enchantments
+  enchanted_book_advanced:
+    name: "Master Enchanter"
+    description: "Mine 100 diamond ore"
+    type: MINE_BLOCKS
+    active: true
+    blocks:
+      DIAMOND_ORE: 100
+    rewards:
+      ENCHANTED_BOOK: 1
+      DIAMOND: 20
+    enchantments:
+      ENCHANTED_BOOK:
+        EFFICIENCY: 5
+        FORTUNE: 3
+        UNBREAKING: 3
+  
+  # Combat enchanted book
+  combat_enchanted_book:
+    name: "Warrior's Knowledge"
+    description: "Kill 50 zombies"
+    type: KILL_MOBS
+    active: true
+    mobs:
+      ZOMBIE: 50
+    rewards:
+      ENCHANTED_BOOK: 1
+      DIAMOND_SWORD: 1
+    enchantments:
+      ENCHANTED_BOOK:
+        SHARPNESS: 4
+        LOOTING: 3
+        FIRE_ASPECT: 2
+  
+  # Multiple enchanted books as rewards
+  multi_enchanted_books:
+    name: "Enchanted Library"
+    description: "Complete multiple challenges"
+    type: EXPLORE_BLOCKS
+    targetAmount: 10000
+    active: true
+    rewards:
+      ENCHANTED_BOOK: 3
+      DIAMOND: 10
+    enchantments:
+      ENCHANTED_BOOK:
+        # Note: All three books will have the same enchantments
+        # For different books, create separate quests
+        EFFICIENCY: 4
+        FORTUNE: 2
+  
+  # ==========================================
   # MIXED OLD AND NEW FORMAT
   # ==========================================
   

@@ -164,6 +164,7 @@ See **MOB_KILL_QUESTS_GUIDE.md** for complete documentation and 20+ examples!
 
 - `/questadmin reload` - Reload quest configuration
 - `/questadmin complete <player> <quest_id>` - Complete a quest for a player (admin only)
+- `/questadmin reset <player> <quest_id>` - Reset a player's progress on a specific quest (admin only)
 
 ### 📊 Statistics Commands (NEW!)
 
@@ -529,8 +530,14 @@ quests:
     rewards:
       DIAMOND: 10
       IRON_PICKAXE: 1
+      ENCHANTED_BOOK: 1  # Enchanted books supported!
       TORCH: 64
       BREAD: 32
+    enchantments:
+      IRON_PICKAXE:
+        EFFICIENCY: 3
+      ENCHANTED_BOOK:  # Stored enchantments for books
+        FORTUNE: 2
 ```
 
 #### String Format (Still Supported)
@@ -553,6 +560,7 @@ rewards:
 
 ### Features:
 - ✅ **NEW:** Structured YAML rewards format
+- ✅ **NEW:** Enchanted book support with stored enchantments
 - ✅ Automatically parsed from reward strings (legacy)
 - ✅ Supports quantities (any amount)
 - ✅ Items added to player inventory

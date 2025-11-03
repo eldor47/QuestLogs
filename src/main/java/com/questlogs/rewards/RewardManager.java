@@ -182,31 +182,61 @@ public class RewardManager {
                 plugin.getLogger().info("Applying enchantments to " + materialName + ": " + enchants.size() + " enchantments");
                 ItemMeta meta = item.getItemMeta();
                 if (meta != null) {
-                    for (Map.Entry<String, Integer> entry : enchants.entrySet()) {
-                        try {
-                            Enchantment enchantment = Enchantment.getByName(entry.getKey().toUpperCase());
-                            if (enchantment != null) {
-                                int level = entry.getValue();
-                                plugin.getLogger().info("  Attempting to add " + entry.getKey() + " level " + level + " to " + materialName);
-                                
-                                // Allow unsafe enchantments (levels beyond normal limits)
-                                boolean success = meta.addEnchant(enchantment, level, true);
-                                
-                                if (success) {
-                                    plugin.getLogger().info("  ✓ Successfully added " + entry.getKey() + " " + level);
+                    // Special handling for enchanted books
+                    if (item.getType() == org.bukkit.Material.ENCHANTED_BOOK) {
+                        org.bukkit.inventory.meta.EnchantmentStorageMeta bookMeta = (org.bukkit.inventory.meta.EnchantmentStorageMeta) meta;
+                        for (Map.Entry<String, Integer> entry : enchants.entrySet()) {
+                            try {
+                                Enchantment enchantment = Enchantment.getByName(entry.getKey().toUpperCase());
+                                if (enchantment != null) {
+                                    int level = entry.getValue();
+                                    plugin.getLogger().info("  Attempting to add stored enchantment " + entry.getKey() + " level " + level + " to enchanted book");
+                                    
+                                    // Add stored enchantment to book (unsafe allowed)
+                                    boolean success = bookMeta.addStoredEnchant(enchantment, level, true);
+                                    
+                                    if (success) {
+                                        plugin.getLogger().info("  ✓ Successfully added stored enchantment " + entry.getKey() + " " + level);
+                                    } else {
+                                        plugin.getLogger().warning("  ✗ Failed to add stored enchantment " + entry.getKey() + " " + level + " (returned false)");
+                                    }
                                 } else {
-                                    plugin.getLogger().warning("  ✗ Failed to add " + entry.getKey() + " " + level + " (returned false)");
+                                    plugin.getLogger().warning("  ✗ Invalid enchantment: " + entry.getKey());
                                 }
-                            } else {
-                                plugin.getLogger().warning("  ✗ Invalid enchantment: " + entry.getKey());
+                            } catch (Exception e) {
+                                plugin.getLogger().severe("  ✗ Error applying stored enchantment " + entry.getKey() + ": " + e.getMessage());
+                                e.printStackTrace();
                             }
-                        } catch (Exception e) {
-                            plugin.getLogger().severe("  ✗ Error applying enchantment " + entry.getKey() + ": " + e.getMessage());
-                            e.printStackTrace();
                         }
+                        item.setItemMeta(bookMeta);
+                    } else {
+                        // Regular item enchantments
+                        for (Map.Entry<String, Integer> entry : enchants.entrySet()) {
+                            try {
+                                Enchantment enchantment = Enchantment.getByName(entry.getKey().toUpperCase());
+                                if (enchantment != null) {
+                                    int level = entry.getValue();
+                                    plugin.getLogger().info("  Attempting to add " + entry.getKey() + " level " + level + " to " + materialName);
+                                    
+                                    // Allow unsafe enchantments (levels beyond normal limits)
+                                    boolean success = meta.addEnchant(enchantment, level, true);
+                                    
+                                    if (success) {
+                                        plugin.getLogger().info("  ✓ Successfully added " + entry.getKey() + " " + level);
+                                    } else {
+                                        plugin.getLogger().warning("  ✗ Failed to add " + entry.getKey() + " " + level + " (returned false)");
+                                    }
+                                } else {
+                                    plugin.getLogger().warning("  ✗ Invalid enchantment: " + entry.getKey());
+                                }
+                            } catch (Exception e) {
+                                plugin.getLogger().severe("  ✗ Error applying enchantment " + entry.getKey() + ": " + e.getMessage());
+                                e.printStackTrace();
+                            }
+                        }
+                        item.setItemMeta(meta);
+                        plugin.getLogger().info("Item enchantments after setting meta: " + item.getEnchantments());
                     }
-                    item.setItemMeta(meta);
-                    plugin.getLogger().info("Item enchantments after setting meta: " + item.getEnchantments());
                 } else {
                     plugin.getLogger().warning("ItemMeta is null for " + materialName);
                 }

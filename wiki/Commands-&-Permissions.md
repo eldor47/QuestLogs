@@ -115,14 +115,15 @@ Force complete a quest for a player.
 - Gives rewards to the player
 - Updates statistics
 
-#### `/questadmin reset <player>`
-Reset all quest progress for a player.
+#### `/questadmin reset <player> <quest_id>`
+Reset a player's progress on a specific quest.
 ```
-/questadmin reset Steve
+/questadmin reset Steve novice_miner
 ```
-- Clears all quest progress
+- Resets progress on the specified quest only
+- Works for online and offline players
 - Does NOT reset statistics
-- Cannot be undone
+- Player is notified if online
 
 #### `/questadmin list`
 List all registered quests.
@@ -253,8 +254,10 @@ All commands have full tab completion support:
 /quest <TAB>        → list, info, progress
 /quest info <TAB>   → Shows all quest IDs
 /questadmin <TAB>   → reload, complete, reset, list
-/questadmin complete <TAB>   → Shows quest IDs
-/questadmin complete novice_miner <TAB>   → Shows online players
+/questadmin complete <TAB>   → Shows online players
+/questadmin complete PlayerName <TAB>   → Shows quest IDs
+/questadmin reset <TAB>   → Shows online players
+/questadmin reset PlayerName <TAB>   → Shows quest IDs
 /challengeadmin <TAB>   → start, stop, list, reload
 /challengeadmin start <TAB>   → Shows all challenge IDs
 ```
@@ -309,9 +312,10 @@ All commands have full tab completion support:
 /challengeadmin list
 ```
 
-**Resetting Player Progress:**
+**Resetting Quest Progress:**
 ```
-/questadmin reset Steve
+/questadmin reset Steve novice_miner
+/questadmin reset Alex diamond_hunter
 ```
 
 ---
