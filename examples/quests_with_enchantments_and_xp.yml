@@ -383,7 +383,7 @@ quests:
         UNBREAKING: 3
         MENDING: 1
 
-  # ===== BOOK WITH ENCHANTMENTS (for enchanting) =====
+  # ===== ENCHANTED BOOK WITH STORED ENCHANTMENTS =====
   enchanted_knowledge:
     name: "Enchanted Knowledge"
     description: "Craft 10 bookshelves"
@@ -392,13 +392,59 @@ quests:
     gui_slot: 21
     gui_icon: ENCHANTED_BOOK
     xp_reward: 500
-    items:
+    blocks:
       BOOKSHELF: 10
     rewards:
-      ENCHANTED_BOOK: 3
+      ENCHANTED_BOOK: 1
       EXPERIENCE_BOTTLE: 64
-    # Note: ENCHANTED_BOOK can't have enchantments applied directly
-    # But you can give enchanted books as rewards!
+    enchantments:
+      ENCHANTED_BOOK:
+        EFFICIENCY: 3
+        FORTUNE: 2
+  
+  # ===== MULTIPLE ENCHANTED BOOKS =====
+  library_keeper:
+    name: "Library Keeper"
+    description: "Mine lapis for enchanting"
+    type: MINE_BLOCKS
+    active: true
+    gui_slot: 22
+    gui_icon: ENCHANTING_TABLE
+    xp_reward: 300
+    blocks:
+      LAPIS_ORE: 64
+    rewards:
+      ENCHANTED_BOOK: 2
+      LAPIS_LAZULI: 32
+    enchantments:
+      ENCHANTED_BOOK:
+        # Both books will have these enchantments
+        SHARPNESS: 3
+        UNBREAKING: 2
+  
+  # ===== COMBAT ENCHANTED BOOK =====
+  warrior_tome:
+    name: "Warrior's Tome"
+    description: "Defeat dangerous mobs"
+    type: KILL_MOBS
+    active: true
+    gui_slot: 23
+    gui_icon: DIAMOND_SWORD
+    xp_reward: 400
+    mobs:
+      CREEPER: 10
+      SKELETON: 15
+      ZOMBIE: 20
+    rewards:
+      ENCHANTED_BOOK: 1
+      DIAMOND: 10
+    enchantments:
+      ENCHANTED_BOOK:
+        SHARPNESS: 4
+        LOOTING: 3
+        FIRE_ASPECT: 2
+        UNBREAKING: 3
+        MENDING: 1
 
   # ===== SHEARS WITH EFFICIENCY =====
   wool_collector:
