@@ -1,5 +1,5 @@
 name: QuestLogs
-version: 1.0.1
+version: 1.0.2
 main: com.questlogs.QuestLogsPlugin
 api-version: 1.21
 description: Quest system for tracking player exploration and achievements
@@ -12,7 +12,7 @@ commands:
     permission: questlogs.use
   questadmin:
     description: Admin commands for managing quests
-    usage: /questadmin <reload|complete>
+    usage: /questadmin <reload|complete|reset>
     permission: questlogs.admin
   questbook:
     description: Open the quest book GUI
