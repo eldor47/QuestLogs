@@ -14,7 +14,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -53,7 +52,8 @@ public class ChallengeManager {
      */
     public void loadChallenges() {
         if (!challengesFile.exists()) {
-            createDefaultConfig();
+            // Save default config from resources
+            plugin.saveResource("challenges.yml", false);
         }
         
         challengesConfig = YamlConfiguration.loadConfiguration(challengesFile);
@@ -65,171 +65,6 @@ public class ChallengeManager {
         }
         
         logger.info("Loaded " + challengePool.size() + " challenges");
-    }
-    
-    /**
-     * Create default challenges configuration
-     */
-    private void createDefaultConfig() {
-        try {
-            challengesFile.getParentFile().mkdirs();
-            challengesFile.createNewFile();
-            
-            FileConfiguration config = YamlConfiguration.loadConfiguration(challengesFile);
-            
-            // Settings
-            config.set("settings.enabled", true);
-            config.set("settings.frequency", 3600); // 1 hour (less frequent)
-            config.set("settings.duration", 300); // 5 minutes
-            config.set("settings.announce-interval", 60); // 1 minute
-            config.set("settings.broadcast-start", true);
-            config.set("settings.broadcast-end", true);
-            config.set("settings.reward-top-players", 3);
-            config.set("settings.minimum-players", 2); // Don't start if less than 2 players online
-            
-            // Easy Challenges (common resources, modest rewards)
-            createChallenge(config, "stone_sprint", "Stone Mining Sprint", 
-                "Mine the most stone!", "MINE_BLOCKS", "STONE", 300,
-                new int[]{16, 8, 4}, "IRON_INGOT",
-                new int[]{32, 16, 8}, "COAL",
-                new int[]{0, 0, 0}, null);
-            
-            createChallenge(config, "wood_chopper", "Lumberjack Challenge", 
-                "Break the most logs!", "BREAK_BLOCKS", "OAK_LOG", 300,
-                new int[]{24, 12, 6}, "IRON_INGOT",
-                new int[]{8, 4, 2}, "GOLDEN_APPLE",
-                new int[]{1, 0, 0}, "ENCHANTED_BOOK"); // Efficiency I
-            addEnchantment(config, "wood_chopper", "1st", "EFFICIENCY", 1);
-            
-            createChallenge(config, "zombie_hunter", "Zombie Hunt", 
-                "Kill the most zombies!", "KILL_MOBS", "ZOMBIE", 300,
-                new int[]{12, 6, 3}, "IRON_INGOT",
-                new int[]{4, 2, 1}, "GOLD_INGOT",
-                new int[]{1, 1, 0}, "ENCHANTED_BOOK"); // Sharpness I/II
-            addEnchantment(config, "zombie_hunter", "1st", "SHARPNESS", 2);
-            addEnchantment(config, "zombie_hunter", "2nd", "SHARPNESS", 1);
-            
-            // Medium Challenges (less common resources, better rewards)
-            createChallenge(config, "coal_rush", "Coal Rush", 
-                "Mine the most coal ore!", "MINE_BLOCKS", "COAL_ORE", 300,
-                new int[]{20, 10, 5}, "IRON_INGOT",
-                new int[]{2, 1, 0}, "DIAMOND",
-                new int[]{1, 1, 0}, "ENCHANTED_BOOK"); // Efficiency II/III
-            addEnchantment(config, "coal_rush", "1st", "EFFICIENCY", 3);
-            addEnchantment(config, "coal_rush", "2nd", "EFFICIENCY", 2);
-            
-            createChallenge(config, "skeleton_sniper", "Skeleton Sniper", 
-                "Kill the most skeletons!", "KILL_MOBS", "SKELETON", 300,
-                new int[]{16, 8, 4}, "IRON_INGOT",
-                new int[]{2, 1, 0}, "DIAMOND",
-                new int[]{1, 1, 0}, "ENCHANTED_BOOK"); // Power II/III
-            addEnchantment(config, "skeleton_sniper", "1st", "POWER", 3);
-            addEnchantment(config, "skeleton_sniper", "2nd", "POWER", 2);
-            
-            createChallenge(config, "iron_seeker", "Iron Seeker", 
-                "Mine the most iron ore!", "MINE_BLOCKS", "IRON_ORE", 300,
-                new int[]{24, 12, 6}, "IRON_INGOT",
-                new int[]{3, 1, 0}, "DIAMOND",
-                new int[]{1, 0, 0}, "ENCHANTED_BOOK"); // Unbreaking III
-            addEnchantment(config, "iron_seeker", "1st", "UNBREAKING", 3);
-            
-            // Hard Challenges (rare resources, premium rewards)
-            createChallenge(config, "diamond_dash", "Diamond Dash", 
-                "Mine the most diamond ore!", "MINE_BLOCKS", "DIAMOND_ORE", 300,
-                new int[]{5, 3, 1}, "DIAMOND",
-                new int[]{16, 8, 4}, "IRON_INGOT",
-                new int[]{1, 1, 0}, "ENCHANTED_BOOK"); // Fortune III / Silk Touch
-            addEnchantment(config, "diamond_dash", "1st", "FORTUNE", 3);
-            addEnchantment(config, "diamond_dash", "2nd", "SILK_TOUCH", 1);
-            
-            createChallenge(config, "nether_explorer", "Nether Explorer", 
-                "Explore the most blocks in the Nether!", "EXPLORE_BLOCKS", "ANY", 300,
-                new int[]{4, 2, 1}, "DIAMOND",
-                new int[]{8, 4, 2}, "GOLD_INGOT",
-                new int[]{1, 1, 0}, "ENCHANTED_BOOK"); // Protection III/IV
-            addEnchantment(config, "nether_explorer", "1st", "PROTECTION", 4);
-            addEnchantment(config, "nether_explorer", "2nd", "PROTECTION", 3);
-            
-            // Fun/Creative Challenges
-            createChallenge(config, "builder_challenge", "Speed Builder", 
-                "Place the most blocks!", "PLACE_BLOCKS", "COBBLESTONE", 300,
-                new int[]{12, 6, 3}, "IRON_INGOT",
-                new int[]{64, 32, 16}, "OAK_PLANKS",
-                new int[]{1, 1, 0}, "ENCHANTED_BOOK"); // Efficiency II/III
-            addEnchantment(config, "builder_challenge", "1st", "EFFICIENCY", 3);
-            addEnchantment(config, "builder_challenge", "2nd", "EFFICIENCY", 2);
-            
-            createChallenge(config, "crafting_master", "Crafting Master", 
-                "Craft the most items!", "CRAFT_ITEMS", "STICK", 300,
-                new int[]{16, 8, 4}, "IRON_INGOT",
-                new int[]{8, 4, 2}, "GOLD_INGOT",
-                new int[]{1, 0, 0}, "ENCHANTED_BOOK"); // Mending
-            addEnchantment(config, "crafting_master", "1st", "MENDING", 1);
-            
-            config.save(challengesFile);
-            logger.info("Created default challenges.yml");
-            
-        } catch (IOException e) {
-            logger.severe("Could not create challenges.yml!");
-            e.printStackTrace();
-        }
-    }
-    
-    /**
-     * Create a balanced challenge with scaled rewards
-     */
-    private void createChallenge(FileConfiguration config, String id, String name, 
-                                String desc, String type, String target, int duration,
-                                int[] reward1Amounts, String reward1Type,
-                                int[] reward2Amounts, String reward2Type,
-                                int[] reward3Amounts, String reward3Type) {
-        String path = "challenge-pool." + id;
-        config.set(path + ".name", name);
-        config.set(path + ".description", desc);
-        config.set(path + ".type", type);
-        config.set(path + ".target", target);
-        config.set(path + ".duration", duration);
-        
-        // 1st place rewards
-        if (reward1Amounts[0] > 0 && reward1Type != null) {
-            config.set(path + ".rewards.1st." + reward1Type, reward1Amounts[0]);
-        }
-        if (reward2Amounts[0] > 0 && reward2Type != null) {
-            config.set(path + ".rewards.1st." + reward2Type, reward2Amounts[0]);
-        }
-        if (reward3Amounts[0] > 0 && reward3Type != null) {
-            config.set(path + ".rewards.1st." + reward3Type, reward3Amounts[0]);
-        }
-        
-        // 2nd place rewards
-        if (reward1Amounts[1] > 0 && reward1Type != null) {
-            config.set(path + ".rewards.2nd." + reward1Type, reward1Amounts[1]);
-        }
-        if (reward2Amounts[1] > 0 && reward2Type != null) {
-            config.set(path + ".rewards.2nd." + reward2Type, reward2Amounts[1]);
-        }
-        if (reward3Amounts[1] > 0 && reward3Type != null) {
-            config.set(path + ".rewards.2nd." + reward3Type, reward3Amounts[1]);
-        }
-        
-        // 3rd place rewards
-        if (reward1Amounts[2] > 0 && reward1Type != null) {
-            config.set(path + ".rewards.3rd." + reward1Type, reward1Amounts[2]);
-        }
-        if (reward2Amounts[2] > 0 && reward2Type != null) {
-            config.set(path + ".rewards.3rd." + reward2Type, reward2Amounts[2]);
-        }
-        if (reward3Amounts[2] > 0 && reward3Type != null) {
-            config.set(path + ".rewards.3rd." + reward3Type, reward3Amounts[2]);
-        }
-    }
-    
-    /**
-     * Add enchantment to an enchanted book reward
-     */
-    private void addEnchantment(FileConfiguration config, String challengeId, String place, String enchantment, int level) {
-        String path = "challenge-pool." + challengeId + ".rewards." + place + ".ENCHANTED_BOOK_enchantments." + enchantment;
-        config.set(path, level);
     }
     
     /**
@@ -436,8 +271,28 @@ public class ChallengeManager {
                 return typeMatches; // Exploration doesn't need target match
         }
         
+        if (!typeMatches) {
+            return false;
+        }
+        
         // Check target matches
-        return typeMatches && (challengeTarget.equals("ANY") || challengeTarget.equals(target));
+        if (challengeTarget.equals("ANY")) {
+            return true;
+        }
+        
+        // For CRAFT_ITEMS, support multiple items (comma-separated)
+        if (challengeType == ChallengeType.CRAFT_ITEMS && challengeTarget.contains(",")) {
+            String[] allowedItems = challengeTarget.split(",");
+            for (String item : allowedItems) {
+                if (item.trim().equalsIgnoreCase(target)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        // Single target match
+        return challengeTarget.equalsIgnoreCase(target);
     }
     
     /**
@@ -450,6 +305,30 @@ public class ChallengeManager {
         Bukkit.broadcastMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         Bukkit.broadcastMessage(ChatColor.AQUA + activeChallenge.getName());
         Bukkit.broadcastMessage(ChatColor.GRAY + activeChallenge.getDescription());
+        
+        // Show specific items for crafting challenges
+        if (activeChallenge.getType() == ChallengeType.CRAFT_ITEMS && 
+            !activeChallenge.getTarget().equals("ANY")) {
+            String target = activeChallenge.getTarget();
+            if (target.contains(",")) {
+                // Multiple items
+                String[] items = target.split(",");
+                StringBuilder itemList = new StringBuilder();
+                for (int i = 0; i < items.length; i++) {
+                    if (i > 0) itemList.append(", ");
+                    itemList.append(formatItemName(items[i].trim()));
+                }
+                Bukkit.broadcastMessage(ChatColor.YELLOW + "Tracked Items: " + ChatColor.WHITE + itemList.toString());
+            } else {
+                // Single item
+                Bukkit.broadcastMessage(ChatColor.YELLOW + "Tracked Item: " + ChatColor.WHITE + formatItemName(target));
+            }
+        } else if (activeChallenge.getType() != ChallengeType.EXPLORE_BLOCKS && 
+                   !activeChallenge.getTarget().equals("ANY")) {
+            // Show target for other challenge types
+            Bukkit.broadcastMessage(ChatColor.YELLOW + "Target: " + ChatColor.WHITE + formatItemName(activeChallenge.getTarget()));
+        }
+        
         Bukkit.broadcastMessage(ChatColor.YELLOW + "Duration: " + ChatColor.WHITE + activeChallenge.getDuration() + " seconds");
         Bukkit.broadcastMessage(ChatColor.YELLOW + "Type /challenge to view leaderboard");
         Bukkit.broadcastMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -584,6 +463,30 @@ public class ChallengeManager {
      */
     public FileConfiguration getChallengesConfig() {
         return challengesConfig;
+    }
+    
+    /**
+     * Format item/material name for display (IRON_SWORD -> Iron Sword)
+     */
+    private String formatItemName(String materialName) {
+        if (materialName == null || materialName.isEmpty()) {
+            return materialName;
+        }
+        
+        String[] parts = materialName.toLowerCase().split("_");
+        StringBuilder result = new StringBuilder();
+        for (String part : parts) {
+            if (result.length() > 0) {
+                result.append(" ");
+            }
+            if (part.length() > 0) {
+                result.append(Character.toUpperCase(part.charAt(0)));
+                if (part.length() > 1) {
+                    result.append(part.substring(1));
+                }
+            }
+        }
+        return result.toString();
     }
     
     /**

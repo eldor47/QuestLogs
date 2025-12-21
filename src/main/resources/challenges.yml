@@ -1,0 +1,294 @@
+# QuestLogs Challenges Configuration
+# This file contains all timed server-wide challenges/mini-games
+
+# Challenge Settings
+settings:
+  # Enable/disable the challenge system
+  enabled: true
+  
+  # How often to start a new challenge (in seconds)
+  # Default: 3600 (1 hour)
+  frequency: 3600
+  
+  # Default duration for challenges (in seconds)
+  # Default: 300 (5 minutes)
+  duration: 300
+  
+  # How often to remind players about active challenge (in seconds)
+  # Default: 60 (1 minute)
+  announce-interval: 60
+  
+  # Broadcast when challenge starts
+  broadcast-start: true
+  
+  # Broadcast when challenge ends
+  broadcast-end: true
+  
+  # Number of top players to reward (1st, 2nd, 3rd, etc.)
+  reward-top-players: 3
+  
+  # Minimum players online to start a challenge
+  # Challenges won't start if fewer players are online
+  minimum-players: 2
+
+# Challenge Pool
+# All challenges that can be randomly selected
+# You can add, remove, or modify challenges here
+challenge-pool:
+  # Easy Challenges (common resources, modest rewards)
+  stone_sprint:
+    name: "Stone Mining Sprint"
+    description: "Mine the most stone!"
+    type: MINE_BLOCKS
+    target: STONE
+    duration: 300
+    rewards:
+      1st:
+        IRON_INGOT: 16
+        COAL: 32
+      2nd:
+        IRON_INGOT: 8
+        COAL: 16
+      3rd:
+        IRON_INGOT: 4
+        COAL: 8
+  
+  wood_chopper:
+    name: "Lumberjack Challenge"
+    description: "Break the most logs!"
+    type: BREAK_BLOCKS
+    target: OAK_LOG
+    duration: 300
+    rewards:
+      1st:
+        IRON_INGOT: 24
+        GOLDEN_APPLE: 8
+      2nd:
+        IRON_INGOT: 12
+        GOLDEN_APPLE: 4
+      3rd:
+        IRON_INGOT: 6
+        GOLDEN_APPLE: 2
+  
+  zombie_hunter:
+    name: "Zombie Hunt"
+    description: "Kill the most zombies!"
+    type: KILL_MOBS
+    target: ZOMBIE
+    duration: 300
+    rewards:
+      1st:
+        IRON_INGOT: 12
+        GOLD_INGOT: 4
+      2nd:
+        IRON_INGOT: 6
+        GOLD_INGOT: 2
+      3rd:
+        IRON_INGOT: 3
+        GOLD_INGOT: 1
+  
+  # Medium Challenges (less common resources, better rewards)
+  coal_rush:
+    name: "Coal Rush"
+    description: "Mine the most coal ore!"
+    type: MINE_BLOCKS
+    target: COAL_ORE
+    duration: 300
+    rewards:
+      1st:
+        IRON_INGOT: 20
+        DIAMOND: 2
+      2nd:
+        IRON_INGOT: 10
+        DIAMOND: 1
+      3rd:
+        IRON_INGOT: 5
+  
+  skeleton_sniper:
+    name: "Skeleton Sniper"
+    description: "Kill the most skeletons!"
+    type: KILL_MOBS
+    target: SKELETON
+    duration: 300
+    rewards:
+      1st:
+        IRON_INGOT: 16
+        DIAMOND: 2
+      2nd:
+        IRON_INGOT: 8
+        DIAMOND: 1
+      3rd:
+        IRON_INGOT: 4
+  
+  iron_seeker:
+    name: "Iron Seeker"
+    description: "Mine the most iron ore!"
+    type: MINE_BLOCKS
+    target: IRON_ORE
+    duration: 300
+    rewards:
+      1st:
+        IRON_INGOT: 24
+        DIAMOND: 3
+      2nd:
+        IRON_INGOT: 12
+        DIAMOND: 1
+      3rd:
+        IRON_INGOT: 6
+  
+  # Hard Challenges (rare resources, premium rewards)
+  diamond_dash:
+    name: "Diamond Dash"
+    description: "Mine the most diamond ore!"
+    type: MINE_BLOCKS
+    target: DIAMOND_ORE
+    duration: 300
+    rewards:
+      1st:
+        DIAMOND: 5
+        IRON_INGOT: 16
+      2nd:
+        DIAMOND: 3
+        IRON_INGOT: 8
+      3rd:
+        DIAMOND: 1
+        IRON_INGOT: 4
+  
+  nether_explorer:
+    name: "Nether Explorer"
+    description: "Explore the most blocks in the Nether!"
+    type: EXPLORE_BLOCKS
+    target: ANY
+    duration: 300
+    rewards:
+      1st:
+        DIAMOND: 4
+        GOLD_INGOT: 8
+      2nd:
+        DIAMOND: 2
+        GOLD_INGOT: 4
+      3rd:
+        DIAMOND: 1
+        GOLD_INGOT: 2
+  
+  # Fun/Creative Challenges
+  builder_challenge:
+    name: "Speed Builder"
+    description: "Place the most blocks!"
+    type: PLACE_BLOCKS
+    target: COBBLESTONE
+    duration: 300
+    rewards:
+      1st:
+        IRON_INGOT: 12
+        OAK_PLANKS: 64
+      2nd:
+        IRON_INGOT: 6
+        OAK_PLANKS: 32
+      3rd:
+        IRON_INGOT: 3
+        OAK_PLANKS: 16
+  
+  crafting_master:
+    name: "Crafting Master"
+    description: "Craft the most items!"
+    type: CRAFT_ITEMS
+    target: ANY
+    duration: 300
+    rewards:
+      1st:
+        IRON_INGOT: 16
+        GOLD_INGOT: 8
+      2nd:
+        IRON_INGOT: 8
+        GOLD_INGOT: 4
+      3rd:
+        IRON_INGOT: 4
+        GOLD_INGOT: 2
+  
+  # Specific Crafting Challenges
+  tool_smith:
+    name: "Tool Smith Challenge"
+    description: "Craft the most tools!"
+    type: CRAFT_ITEMS
+    target: "IRON_PICKAXE,IRON_AXE,IRON_SHOVEL,IRON_HOE,IRON_SWORD"
+    duration: 300
+    rewards:
+      1st:
+        IRON_INGOT: 8
+        DIAMOND: 2
+      2nd:
+        IRON_INGOT: 4
+        DIAMOND: 1
+      3rd:
+        IRON_INGOT: 2
+  
+  armor_crafter:
+    name: "Armor Crafter Challenge"
+    description: "Craft the most armor pieces!"
+    type: CRAFT_ITEMS
+    target: "IRON_HELMET,IRON_CHESTPLATE,IRON_LEGGINGS,IRON_BOOTS"
+    duration: 300
+    rewards:
+      1st:
+        IRON_INGOT: 12
+        DIAMOND: 1
+      2nd:
+        IRON_INGOT: 6
+        DIAMOND: 1
+      3rd:
+        IRON_INGOT: 3
+  
+  weapon_forge:
+    name: "Weapon Forge Challenge"
+    description: "Craft the most weapons!"
+    type: CRAFT_ITEMS
+    target: "IRON_SWORD,IRON_AXE,BOW,CROSSBOW"
+    duration: 300
+    rewards:
+      1st:
+        IRON_INGOT: 8
+        DIAMOND: 2
+      2nd:
+        IRON_INGOT: 4
+        DIAMOND: 1
+      3rd:
+        IRON_INGOT: 2
+  
+  food_chef:
+    name: "Master Chef Challenge"
+    description: "Craft the most food items!"
+    type: CRAFT_ITEMS
+    target: "BREAD,CAKE,COOKIE,PUMPKIN_PIE"
+    duration: 300
+    rewards:
+      1st:
+        GOLDEN_APPLE: 16
+        BREAD: 32
+        COOKIE: 8
+      2nd:
+        GOLDEN_APPLE: 8
+        BREAD: 16
+        COOKIE: 4
+      3rd:
+        GOLDEN_APPLE: 4
+        BREAD: 8
+        COOKIE: 2
+  
+  redstone_engineer:
+    name: "Redstone Engineer"
+    description: "Craft the most redstone items!"
+    type: CRAFT_ITEMS
+    target: "REDSTONE_TORCH,REPEATER,COMPARATOR,PISTON,STICKY_PISTON"
+    duration: 300
+    rewards:
+      1st:
+        REDSTONE: 16
+        IRON_INGOT: 8
+      2nd:
+        REDSTONE: 8
+        IRON_INGOT: 4
+      3rd:
+        REDSTONE: 4
+        IRON_INGOT: 2
+

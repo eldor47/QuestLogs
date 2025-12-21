@@ -36,28 +36,57 @@ public class CraftItemListener implements Listener {
                 return;
             }
             
+            // Check if event is cancelled - don't track cancelled crafts
+            if (event.isCancelled()) {
+                return;
+            }
+            
             if (!(event.getWhoClicked() instanceof Player)) {
                 return;
             }
             
             Player player = (Player) event.getWhoClicked();
             UUID playerId = player.getUniqueId();
-            ItemStack result = event.getCurrentItem();
+            
+            // Get the recipe result to determine what was crafted (more reliable than getCurrentItem)
+            ItemStack recipeResult = null;
+            if (event.getRecipe() != null && event.getRecipe().getResult() != null) {
+                recipeResult = event.getRecipe().getResult();
+            }
+            
+            // Get the actual result item from the event (for amount calculation)
+            ItemStack actualResult = event.getCurrentItem();
+            
+            // Determine material and amount
+            Material material;
+            int craftAmount;
+            
+            if (recipeResult != null && recipeResult.getType() != Material.AIR) {
+                // Use recipe result for material type (more reliable)
+                material = recipeResult.getType();
+                
+                // Calculate craft amount
+                if (event.isShiftClick()) {
+                    // For shift-click, calculate max possible crafts based on available ingredients
+                    craftAmount = getMaxCraftAmount(event, recipeResult);
+                } else {
+                    // For normal click, use actual result amount if available, otherwise recipe amount
+                    if (actualResult != null && actualResult.getType() == material) {
+                        craftAmount = actualResult.getAmount();
+                    } else {
+                        craftAmount = recipeResult.getAmount();
+                    }
+                }
+            } else if (actualResult != null && actualResult.getType() != Material.AIR) {
+                // Fallback to actual result if recipe is not available
+                material = actualResult.getType();
+                craftAmount = actualResult.getAmount();
+            } else {
+                // No valid result found
+                return;
+            }
         
-        if (result == null || result.getType() == Material.AIR) {
-            return;
-        }
-        
-        Material material = result.getType();
-        String materialName = material.name();
-        
-        // Calculate how many items are being crafted
-        // This handles shift-clicking to craft multiple items
-        int craftAmount = result.getAmount();
-        if (event.isShiftClick()) {
-            // For shift-click, calculate max possible crafts
-            craftAmount = getMaxCraftAmount(event, result);
-        }
+            String materialName = material.name();
         
         // Track cumulative stats for ALL items crafted (ALWAYS, regardless of quests)
         plugin.getStatsManager().getPlayerStats(playerId).addItemCrafted(materialName, craftAmount);
@@ -139,18 +168,30 @@ public class CraftItemListener implements Listener {
     }
     
     private int getMaxCraftAmount(CraftItemEvent event, ItemStack result) {
-        // Calculate maximum number of items that can be crafted
-        int maxCraftable = Integer.MAX_VALUE;
+        // For shift-click, Minecraft calculates the maximum automatically
+        // The actual result amount in the event should reflect this
+        ItemStack actualResult = event.getCurrentItem();
+        if (actualResult != null && actualResult.getType() == result.getType()) {
+            return actualResult.getAmount();
+        }
         
-        // Check each ingredient in the crafting matrix
+        // Fallback: Estimate based on available ingredients
+        // This is a simplified calculation - Minecraft's actual calculation is more complex
+        int minIngredient = Integer.MAX_VALUE;
         for (ItemStack ingredient : event.getInventory().getMatrix()) {
             if (ingredient != null && ingredient.getType() != Material.AIR) {
-                maxCraftable = Math.min(maxCraftable, ingredient.getAmount());
+                minIngredient = Math.min(minIngredient, ingredient.getAmount());
             }
         }
         
-        // Multiply by the result amount (some recipes produce multiple items)
-        return maxCraftable * result.getAmount();
+        // If we couldn't find a minimum, use recipe result amount
+        if (minIngredient == Integer.MAX_VALUE) {
+            return result.getAmount();
+        }
+        
+        // Multiply by result amount (some recipes produce multiple items per craft)
+        // Note: This is an approximation - actual Minecraft calculation considers recipe requirements
+        return minIngredient * result.getAmount();
     }
     
     private boolean isQuestComplete(Player player, Quest quest) {
@@ -215,4 +256,5 @@ public class CraftItemListener implements Listener {
         return result.toString();
     }
 }
+
 
