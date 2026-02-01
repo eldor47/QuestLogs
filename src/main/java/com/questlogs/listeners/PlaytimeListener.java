@@ -49,8 +49,10 @@ public class PlaytimeListener implements Listener {
             // Add to player's total playtime
             plugin.getStatsManager().getPlayerStats(playerId).addPlaytime(sessionDuration);
             
-            // Save stats to database
-            plugin.getStatsManager().saveStats();
+            // Save stats for THIS PLAYER ONLY, asynchronously to prevent lag spikes
+            plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
+                plugin.getStatsManager().savePlayerStats(playerId);
+            });
         }
     }
     

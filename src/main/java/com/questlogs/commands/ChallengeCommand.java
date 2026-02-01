@@ -29,11 +29,15 @@ public class ChallengeCommand implements CommandExecutor {
             return true;
         }
         
+        // Get ASCII mode setting
+        boolean asciiMode = plugin.getChallengeManager().isAsciiMode();
+        String border = asciiMode ? "===========================" : "━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+        
         // Display challenge info
         sender.sendMessage("");
-        sender.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        sender.sendMessage(ChatColor.GOLD + border);
         sender.sendMessage(ChatColor.YELLOW + "" + ChatColor.BOLD + "Active Challenge");
-        sender.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        sender.sendMessage(ChatColor.GOLD + border);
         sender.sendMessage(ChatColor.AQUA + activeChallenge.getName());
         sender.sendMessage(ChatColor.GRAY + activeChallenge.getDescription());
         sender.sendMessage("");
@@ -49,7 +53,7 @@ public class ChallengeCommand implements CommandExecutor {
             sender.sendMessage(ChatColor.YELLOW + "Current Leaderboard:");
             for (int i = 0; i < Math.min(10, leaderboard.size()); i++) {
                 Map.Entry<String, Integer> entry = leaderboard.get(i);
-                String medal = getMedal(i + 1);
+                String medal = getMedal(i + 1, asciiMode);
                 ChatColor color = getPlaceColor(i + 1);
                 sender.sendMessage(color + "  " + medal + " " + entry.getKey() + 
                                  ChatColor.GRAY + " - " + ChatColor.YELLOW + entry.getValue());
@@ -82,18 +86,27 @@ public class ChallengeCommand implements CommandExecutor {
             }
         }
         
-        sender.sendMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        sender.sendMessage(ChatColor.GOLD + border);
         sender.sendMessage("");
         
         return true;
     }
     
-    private String getMedal(int place) {
-        switch (place) {
-            case 1: return "🥇";
-            case 2: return "🥈";
-            case 3: return "🥉";
-            default: return String.valueOf(place) + ".";
+    private String getMedal(int place, boolean asciiMode) {
+        if (asciiMode) {
+            switch (place) {
+                case 1: return "[1st]";
+                case 2: return "[2nd]";
+                case 3: return "[3rd]";
+                default: return "[" + place + "th]";
+            }
+        } else {
+            switch (place) {
+                case 1: return "🥇";
+                case 2: return "🥈";
+                case 3: return "🥉";
+                default: return String.valueOf(place) + ".";
+            }
         }
     }
     

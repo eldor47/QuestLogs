@@ -33,6 +33,9 @@ public class ChallengeManager {
     private BukkitTask schedulerTask;
     private BukkitTask reminderTask;
     
+    // ASCII mode settings for compatibility
+    private boolean useAsciiCharacters;
+    
     public ChallengeManager(QuestLogsPlugin plugin) {
         this.plugin = plugin;
         this.logger = plugin.getLogger();
@@ -64,7 +67,11 @@ public class ChallengeManager {
             challengePool.addAll(poolSection.getKeys(false));
         }
         
-        logger.info("Loaded " + challengePool.size() + " challenges");
+        // Load ASCII mode setting
+        useAsciiCharacters = challengesConfig.getBoolean("settings.use-ascii-characters", false);
+        
+        logger.info("Loaded " + challengePool.size() + " challenges" + 
+                   (useAsciiCharacters ? " (ASCII mode enabled)" : ""));
     }
     
     /**
@@ -299,10 +306,13 @@ public class ChallengeManager {
      * Broadcast challenge start
      */
     private void broadcastChallengeStart() {
+        String border = getBorderLine();
+        String trophy = getTrophyPrefix();
+        
         Bukkit.broadcastMessage("");
-        Bukkit.broadcastMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        Bukkit.broadcastMessage(ChatColor.YELLOW + "" + ChatColor.BOLD + "🏆 CHALLENGE STARTED! 🏆");
-        Bukkit.broadcastMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        Bukkit.broadcastMessage(ChatColor.GOLD + border);
+        Bukkit.broadcastMessage(ChatColor.YELLOW + "" + ChatColor.BOLD + trophy + " CHALLENGE STARTED! " + trophy);
+        Bukkit.broadcastMessage(ChatColor.GOLD + border);
         Bukkit.broadcastMessage(ChatColor.AQUA + activeChallenge.getName());
         Bukkit.broadcastMessage(ChatColor.GRAY + activeChallenge.getDescription());
         
@@ -331,7 +341,7 @@ public class ChallengeManager {
         
         Bukkit.broadcastMessage(ChatColor.YELLOW + "Duration: " + ChatColor.WHITE + activeChallenge.getDuration() + " seconds");
         Bukkit.broadcastMessage(ChatColor.YELLOW + "Type /challenge to view leaderboard");
-        Bukkit.broadcastMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        Bukkit.broadcastMessage(ChatColor.GOLD + border);
         Bukkit.broadcastMessage("");
         
         // Play sound
@@ -345,7 +355,8 @@ public class ChallengeManager {
      */
     private void broadcastChallengeReminder() {
         long remaining = activeChallenge.getRemainingSeconds();
-        Bukkit.broadcastMessage(ChatColor.YELLOW + "⏰ Challenge: " + ChatColor.AQUA + activeChallenge.getName() + 
+        String clock = getClockPrefix();
+        Bukkit.broadcastMessage(ChatColor.YELLOW + clock + " Challenge: " + ChatColor.AQUA + activeChallenge.getName() + 
                                ChatColor.GRAY + " - " + ChatColor.WHITE + remaining + "s remaining");
     }
     
@@ -353,10 +364,13 @@ public class ChallengeManager {
      * Broadcast challenge end
      */
     private void broadcastChallengeEnd(List<Map.Entry<String, Integer>> leaderboard) {
+        String border = getBorderLine();
+        String trophy = getTrophyPrefix();
+        
         Bukkit.broadcastMessage("");
-        Bukkit.broadcastMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        Bukkit.broadcastMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "🏆 CHALLENGE COMPLETE! 🏆");
-        Bukkit.broadcastMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        Bukkit.broadcastMessage(ChatColor.GOLD + border);
+        Bukkit.broadcastMessage(ChatColor.GREEN + "" + ChatColor.BOLD + trophy + " CHALLENGE COMPLETE! " + trophy);
+        Bukkit.broadcastMessage(ChatColor.GOLD + border);
         Bukkit.broadcastMessage(ChatColor.AQUA + activeChallenge.getName());
         Bukkit.broadcastMessage("");
         
@@ -373,7 +387,7 @@ public class ChallengeManager {
             }
         }
         
-        Bukkit.broadcastMessage(ChatColor.GOLD + "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        Bukkit.broadcastMessage(ChatColor.GOLD + border);
         Bukkit.broadcastMessage("");
         
         // Play sound
@@ -383,12 +397,49 @@ public class ChallengeManager {
     }
     
     private String getMedal(int place) {
-        switch (place) {
-            case 1: return "🥇";
-            case 2: return "🥈";
-            case 3: return "🥉";
-            default: return String.valueOf(place) + ".";
+        if (useAsciiCharacters) {
+            switch (place) {
+                case 1: return "[1st]";
+                case 2: return "[2nd]";
+                case 3: return "[3rd]";
+                default: return "[" + place + "th]";
+            }
+        } else {
+            switch (place) {
+                case 1: return "🥇";
+                case 2: return "🥈";
+                case 3: return "🥉";
+                default: return String.valueOf(place) + ".";
+            }
         }
+    }
+    
+    /**
+     * Get border line for broadcasts (respects ASCII mode)
+     */
+    private String getBorderLine() {
+        return useAsciiCharacters ? "===================================" : "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+    }
+    
+    /**
+     * Get trophy/title prefix (respects ASCII mode)
+     */
+    private String getTrophyPrefix() {
+        return useAsciiCharacters ? "***" : "🏆";
+    }
+    
+    /**
+     * Get clock/timer prefix (respects ASCII mode)
+     */
+    private String getClockPrefix() {
+        return useAsciiCharacters ? "[!]" : "⏰";
+    }
+    
+    /**
+     * Check if ASCII mode is enabled
+     */
+    public boolean isAsciiMode() {
+        return useAsciiCharacters;
     }
     
     /**
