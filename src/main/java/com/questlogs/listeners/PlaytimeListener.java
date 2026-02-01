@@ -53,6 +53,8 @@ public class PlaytimeListener implements Listener {
             plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
                 plugin.getStatsManager().savePlayerStats(playerId);
             });
+        } else {
+            plugin.getLogger().warning("Player " + player.getName() + " quit but had no session start time tracked");
         }
     }
     

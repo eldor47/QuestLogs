@@ -85,6 +85,9 @@ public class StatsManager {
         PlayerStats stats = playerStats.get(playerId);
         if (stats != null) {
             database.savePlayerStats(stats);
+            logger.info("Saved stats for player " + playerId + " to database");
+        } else {
+            logger.warning("Could not save stats for player " + playerId + " - not found in cache");
         }
     }
     
