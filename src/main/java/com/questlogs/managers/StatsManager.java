@@ -78,6 +78,20 @@ public class StatsManager {
     }
     
     /**
+     * Save stats for a specific player only
+     * This is more efficient than saveStats() when only one player's data changed
+     */
+    public void savePlayerStats(UUID playerId) {
+        PlayerStats stats = playerStats.get(playerId);
+        if (stats != null) {
+            database.savePlayerStats(stats);
+            logger.info("Saved stats for player " + playerId + " to database");
+        } else {
+            logger.warning("Could not save stats for player " + playerId + " - not found in cache");
+        }
+    }
+    
+    /**
      * Clear stats for a specific player
      */
     public void clearPlayerStats(UUID playerId) {

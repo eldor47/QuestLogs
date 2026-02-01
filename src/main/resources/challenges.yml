@@ -30,6 +30,12 @@ settings:
   # Minimum players online to start a challenge
   # Challenges won't start if fewer players are online
   minimum-players: 2
+  
+  # Use ASCII-only characters in broadcasts
+  # Enable this if players have trouble seeing Unicode characters (emojis, box-drawing)
+  # When true: Uses [1st], [2nd], [3rd] and === instead of medals and fancy borders
+  # When false: Uses emojis and Unicode box-drawing characters
+  use-ascii-characters: false
 
 # Challenge Pool
 # All challenges that can be randomly selected
